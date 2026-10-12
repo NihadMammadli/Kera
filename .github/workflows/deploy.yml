@@ -7,6 +7,10 @@
 # build reads it through NEXT_PUBLIC_BASE_PATH (see lib/paths.ts). Add a
 # custom domain later and the same job produces root-relative URLs instead —
 # nothing here needs editing.
+#
+# The prefix is the repo name, case and all, and it is fixed at build time.
+# Renaming the repo leaves the last build pointing at the old name, so run
+# this workflow by hand (workflow_dispatch) straight after a rename.
 
 name: Deploy to GitHub Pages
 

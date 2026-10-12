@@ -5,7 +5,7 @@ const p = await ctx.newPage();
 const bad = [];
 p.on('response', r => { if (r.status() >= 400) bad.push(`${r.status()} ${r.url()}`); });
 p.on('pageerror', e => bad.push('JS ' + String(e).slice(0,120)));
-await p.goto('https://nihadmammadli.github.io/kera/', { waitUntil:'networkidle', timeout: 60000 });
+await p.goto('https://nihadmammadli.github.io/Kera/', { waitUntil:'networkidle', timeout: 60000 });
 await p.evaluate(()=>document.fonts.ready);
 await p.waitForTimeout(3000);
 await p.screenshot({ path: '.impeccable/review/live-hero.png' });

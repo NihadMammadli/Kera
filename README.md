@@ -22,7 +22,8 @@ Deploy `out/` anywhere that serves static files.
 to Pages. `.github/workflows/ci.yml` runs the same install → typecheck → build
 on pull requests, so nothing reaches `main` that cannot be published.
 
-Live at **https://nihadmammadli.github.io/kera/**.
+Live at **https://nihadmammadli.github.io/Kera/**. The path is the repo name
+and it is case-sensitive: `/kera/` is a 404.
 
 ### The base path, which is the only tricky part
 
@@ -43,9 +44,27 @@ Locally both values are unset, which is correct for `npm run dev`. To see what
 Pages will actually serve:
 
 ```bash
-NEXT_PUBLIC_BASE_PATH=/kera npm run build
-npx serve out          # then open http://localhost:3000/kera/
+NEXT_PUBLIC_BASE_PATH=/Kera npm run build
+mkdir -p /tmp/pages && rm -rf /tmp/pages/Kera && cp -r out /tmp/pages/Kera
+npx serve /tmp/pages   # then open http://localhost:3000/Kera/
 ```
+
+### Renaming the repo breaks the live site until the next deploy
+
+The base path is baked into the HTML at build time. Rename the repo and Pages
+starts serving the *old* build from the *new* path: the page itself loads, but
+every stylesheet, script, font and image still points at the old name and
+404s, so the visitor gets unstyled text and no pictures. Nothing redeploys on
+its own, because the workflow only runs on a push to `main`.
+
+After a rename, run the deploy by hand once:
+
+```bash
+gh workflow run deploy.yml --ref main
+```
+
+or Actions → *Deploy to GitHub Pages* → *Run workflow*. `configure-pages`
+picks up the new name and the build follows.
 
 ### Other hosts
 

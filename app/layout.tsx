@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Marcellus, Alegreya_Sans, Noto_Serif_Georgian } from 'next/font/google';
 import { content, t, picture } from '@/content';
-import { asset, SITE_URL } from '@/lib/paths';
+import { asset, PAGE_URL, SITE_URL } from '@/lib/paths';
 import './globals.css';
 
 const display = Marcellus({
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description,
     images: ogImage ? [ogImage] : undefined,
   },
-  alternates: { canonical: '/' },
+  alternates: { canonical: PAGE_URL },
 };
 
 export const viewport: Viewport = {
@@ -62,7 +62,7 @@ const jsonLd = {
   name: t('brand.name'),
   description,
   servesCuisine: ['Georgian', 'Azerbaijani', 'Caucasian'],
-  url: SITE_URL,
+  url: PAGE_URL,
   image: ogImage ? `${SITE_URL}${ogImage}` : undefined,
   address: {
     '@type': 'PostalAddress',
