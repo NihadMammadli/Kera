@@ -90,9 +90,19 @@ export function Motion() {
       {
         motion: '(prefers-reduced-motion: no-preference)',
         desktop: '(min-width: 901px)',
+        /* a pinned section cannot be scrolled, so all of it has to fit on
+           screen — a phone on its side swipes the rooms instead */
+        pinnable: '(min-width: 901px) and (min-height: 600px)',
+        /* matches the stylesheet, which stands the ladder up at 860px */
+        across: '(min-width: 861px)',
       },
       (ctx) => {
-        const { motion, desktop } = ctx.conditions as { motion: boolean; desktop: boolean };
+        const { motion, desktop, pinnable, across } = ctx.conditions as {
+          motion: boolean;
+          desktop: boolean;
+          pinnable: boolean;
+          across: boolean;
+        };
         if (!motion) return;
 
         /* ------------------------------------------------------ the arches */
@@ -241,7 +251,7 @@ export function Motion() {
         const viewport = document.querySelector<HTMLElement>('[data-rooms-viewport]');
         const roomTrack = document.querySelector<HTMLElement>('[data-rooms-track]');
 
-        if (desktop && section && viewport && roomTrack) {
+        if (pinnable && section && viewport && roomTrack) {
           viewport.dataset.pinned = 'true';
           const distance = () => Math.max(0, roomTrack.scrollWidth - viewport.clientWidth);
           if (distance() > 0) {
@@ -266,7 +276,7 @@ export function Motion() {
         if (fillEl) {
           gsap.from(
             fillEl,
-            desktop
+            across
               ? { scaleX: 0, transformOrigin: 'left center' }
               : { scaleY: 0, transformOrigin: 'center top' },
           );
@@ -278,6 +288,13 @@ export function Motion() {
             scrollTrigger: { trigger: '[data-ladder]', start: 'top 78%', once: true },
           });
         }
+
+        /* the pin reverts itself when the screen stops qualifying (a window
+           made shorter, devtools docked below); the flag that hides the
+           scrollbar does not, and would leave the rooms unreachable */
+        return () => {
+          if (viewport) delete viewport.dataset.pinned;
+        };
       },
     );
 

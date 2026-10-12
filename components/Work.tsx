@@ -18,8 +18,11 @@ export function Work() {
           </p>
         </div>
 
+        {/* the stage count goes in as a variable, not grid-template-columns: an
+            inline track list would beat the stylesheet and keep phones on one
+            squeezed row */}
         {stages.length > 0 && (
-          <ol className="ladder" data-ladder style={{ gridTemplateColumns: `repeat(${stages.length}, minmax(0, 1fr))` }}>
+          <ol className="ladder" data-ladder style={{ ['--stages' as string]: stages.length }}>
             <div className="ladder__line" aria-hidden>
               <span data-ladder-fill style={{ ['--fill' as string]: nowIndex >= 0 ? fill : '0%' }} />
             </div>
