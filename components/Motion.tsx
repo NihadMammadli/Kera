@@ -57,6 +57,7 @@ export function Motion() {
       const padding = parseFloat(getComputedStyle(root).scrollPaddingTop) || 88;
       const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
       const offsetY = hash === '#top' ? 0 : padding + margin;
+      const destination = () => (hash === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - offsetY);
       const settle = () => {
         history.replaceState(null, '', hash);
         target.setAttribute('tabindex', '-1');
@@ -64,19 +65,40 @@ export function Motion() {
       };
 
       if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-        window.scrollTo(0, hash === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - offsetY);
+        window.scrollTo(0, destination());
         settle();
         return;
       }
 
-      gsap.to(window, {
+      /* A phone's toolbar shrinks as the page starts to move, resizing the
+         viewport mid-jump. GSAP's autoKill reads that as the visitor scrolling
+         and abandons the jump partway — on an iPhone, most drawer links
+         stopped short. So autoKill is off: the visitor's own touch or wheel
+         stops the jump instead, and if the layout moved under it the jump
+         settles exactly on the section at the end. */
+      const stop = () => {
+        tween.kill();
+        release();
+      };
+      const release = () => {
+        window.removeEventListener('wheel', stop);
+        window.removeEventListener('touchstart', stop);
+      };
+      const tween = gsap.to(window, {
         duration: 1,
-        delay: 0.05, /* lets the mobile sheet release the body scroll lock first */
+        delay: 0.05, /* lets the mobile sheet close first */
         ease: 'power2.inOut',
-        scrollTo: hash === '#top' ? 0 : { y: target, offsetY, autoKill: true },
+        scrollTo: { y: destination(), autoKill: false },
         overwrite: true,
-        onComplete: settle,
+        onComplete: () => {
+          release();
+          const end = destination();
+          if (Math.abs(window.scrollY - end) > 2) window.scrollTo(0, end);
+          settle();
+        },
       });
+      window.addEventListener('wheel', stop, { passive: true });
+      window.addEventListener('touchstart', stop, { passive: true });
     };
 
     document.addEventListener('click', onClick);

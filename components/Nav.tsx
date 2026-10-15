@@ -34,6 +34,13 @@ export function Nav() {
     return () => io.disconnect();
   }, []);
 
+  /* the scroll lock comes off in the tap itself, before the jump to the
+     section starts — waiting for React's effect raced it on slower phones */
+  const close = () => {
+    document.body.style.overflow = '';
+    setOpen(false);
+  };
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => {
@@ -96,17 +103,11 @@ export function Nav() {
 
       <div className="sheet" id="kera-menu" data-open={open} inert={!open ? true : undefined}>
         {content.nav.map((item) => (
-          <a key={item.key} href={item.hash} onClick={() => setOpen(false)}>
+          <a key={item.key} href={item.hash} onClick={close}>
             {item.label}
           </a>
         ))}
-        {content.book && (
-          <a className="sheet__book" {...content.book} onClick={() => setOpen(false)}>
-            <Calendar />
-            {t('nav.book')}
-          </a>
-        )}
-        <a href={content.instagramUrl} target="_blank" rel="noreferrer noopener" onClick={() => setOpen(false)}>
+        <a className="sheet__social" href={content.instagramUrl} target="_blank" rel="noreferrer noopener" onClick={close}>
           <Instagram />@{content.instagram}
         </a>
       </div>
