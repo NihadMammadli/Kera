@@ -1,7 +1,7 @@
 import { content, t, has, picture } from '@/content';
 import { Arch } from './Arch';
 import { MapCard } from './MapCard';
-import { Clock, Envelope, Instagram, Phone, Pin } from './Icons';
+import { Calendar, Clock, Envelope, Instagram, Phone, Pin } from './Icons';
 import { Em, Lines } from './Rich';
 import { Title } from './Title';
 
@@ -81,9 +81,9 @@ export function Visit() {
 
           <div className="visit__act">
             <div className="actions" data-reveal>
-              {content.tel && (
-                <a className="gilt" href={content.tel}>
-                  <Phone />
+              {content.book && (
+                <a className="gilt" {...content.book}>
+                  <Calendar />
                   {t('nav.book')}
                 </a>
               )}

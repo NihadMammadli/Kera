@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Marcellus, Alegreya_Sans, Noto_Serif_Georgian } from 'next/font/google';
-import { t, picture } from '@/content';
-import { asset, SITE_URL } from '@/lib/paths';
+import { t } from '@/content';
+import { SITE_URL } from '@/lib/paths';
 import './globals.css';
 
 const display = Marcellus({
@@ -24,25 +24,12 @@ const georgian = Noto_Serif_Georgian({
   variable: '--font-georgian',
 });
 
-const og = picture('og');
-const ogImage = og ? asset(`/img/${og.file}`) : undefined;
-
-/* What every page shares. Each page sets its own title, description and
-   canonical; the share card and site name come from here. */
+/* The share card, canonical and the rest live in app/page.tsx: Next replaces
+   a layout's openGraph with the page's rather than merging the two. */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: t('seo.title'),
   description: t('seo.description'),
-  openGraph: {
-    type: 'website',
-    siteName: t('brand.name'),
-    locale: 'en_GB',
-    images: og && ogImage ? [{ url: ogImage, width: 1200, height: 630, alt: og.alt }] : undefined,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: ogImage ? [ogImage] : undefined,
-  },
 };
 
 export const viewport: Viewport = {

@@ -100,7 +100,7 @@ words rather than filling in a blank form:
 | Sheet | What it holds |
 |---|---|
 | **Read me first** | The tutorial, written for a restaurant owner |
-| **Text** | Every single string — 68 of them, each with a plain-language note |
+| **Text** | Every single string — 69 of them, each with a plain-language note |
 | **Menu** | One row per dish or drink. A new value in `Category` becomes a new tab |
 | **The kitchen** | The two lists under Our Cuisine — `fire` left, `table` right — each dish with its little drawing |
 | **Spaces** | One photo card per space. A space with no photo is not shown |
@@ -149,8 +149,9 @@ On success it prints what actually moved before you commit:
 - **Hours in the form `Monday–Friday: 12:00–15:00 and 18:00–00:00`** are also
   read into the page's structured data for Google; a line in any other form (the
   kitchen note) is shown on the page and skipped there.
-- **Every "Book a table" button calls `contact.phone`.** Change the number and
-  they all follow.
+- **Every "Book a table" button opens `contact.bookingUrl`** (the Lightspeed
+  reservation page) in a new tab. Empty it and they call `contact.phone`
+  instead. The number itself is still a call link wherever it is shown.
 - **`menu.isDraft`** prints the "this is a working draft" note above the tabs.
   It is the client's switch, not yours.
 - **One heading over both kitchen lists.** Leave the right list's heading empty

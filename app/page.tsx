@@ -13,16 +13,41 @@ import { Visit } from '@/components/Visit';
 import { content, t, openingHours, picture } from '@/content';
 import { asset, PAGE_URL, SITE_URL } from '@/lib/paths';
 
+const og = picture('og');
+const ogImage = og && {
+  url: `${SITE_URL}${asset(`/img/${og.file}`)}`,
+  width: 1200,
+  height: 630,
+  type: 'image/jpeg',
+  alt: og.alt,
+};
+
+/* The whole share card, here and only here. Next does not merge a page's
+   openGraph into the layout's — it replaces it — so a partial one here once
+   dropped the image, and WhatsApp showed a bare link. */
 export const metadata: Metadata = {
   title: t('seo.title'),
   description: t('seo.description'),
   alternates: { canonical: PAGE_URL },
-  openGraph: { url: PAGE_URL, title: t('seo.title'), description: t('seo.description') },
+  openGraph: {
+    type: 'website',
+    url: PAGE_URL,
+    siteName: t('brand.name'),
+    locale: 'en_GB',
+    title: t('seo.title'),
+    description: t('seo.description'),
+    images: ogImage ? [ogImage] : undefined,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: t('seo.title'),
+    description: t('seo.description'),
+    images: ogImage ? [ogImage.url] : undefined,
+  },
 };
 
 /** Structured data, limited to what is actually true: no rating, no price band. */
 function restaurantJsonLd() {
-  const og = picture('og');
   return {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
@@ -31,9 +56,10 @@ function restaurantJsonLd() {
     url: PAGE_URL,
     servesCuisine: ['Georgian', 'Azerbaijani'],
     hasMenu: `${PAGE_URL}#menu`,
-    ...(content.phone && { telephone: content.phone, acceptsReservations: true }),
+    ...(content.phone && { telephone: content.phone }),
+    ...(content.book && { acceptsReservations: t('contact.bookingUrl') || true }),
     ...(t('contact.email') && { email: t('contact.email') }),
-    ...(og && { image: `${SITE_URL}${asset(`/img/${og.file}`)}` }),
+    ...(ogImage && { image: ogImage.url }),
     address: {
       '@type': 'PostalAddress',
       streetAddress: t('address.street'),

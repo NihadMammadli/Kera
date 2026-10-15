@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { content, t } from '@/content';
-import { Instagram, Phone } from './Icons';
+import { Calendar, Instagram } from './Icons';
 
 export function Nav() {
   const [lifted, setLifted] = useState(false);
@@ -66,17 +66,17 @@ export function Nav() {
           </ul>
         </nav>
 
-        {content.tel && (
-          <a className="gilt nav__book" href={content.tel}>
-            <Phone />
+        {content.book && (
+          <a className="gilt nav__book" {...content.book}>
+            <Calendar />
             {t('nav.book')}
           </a>
         )}
 
         <div className="nav__phone">
-          {content.tel && (
-            <a className="nav__call" href={content.tel} aria-label={`${t('nav.book')} — ${content.phone}`}>
-              <Phone />
+          {content.book && (
+            <a className="nav__call" {...content.book} aria-label={t('nav.book')}>
+              <Calendar />
             </a>
           )}
           <button
@@ -100,9 +100,9 @@ export function Nav() {
             {item.label}
           </a>
         ))}
-        {content.tel && (
-          <a className="sheet__book" href={content.tel} onClick={() => setOpen(false)}>
-            <Phone />
+        {content.book && (
+          <a className="sheet__book" {...content.book} onClick={() => setOpen(false)}>
+            <Calendar />
             {t('nav.book')}
           </a>
         )}

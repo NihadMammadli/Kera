@@ -22,7 +22,8 @@ export const TEXT = [
   { path: 'address.country', label: 'Country' },
   { path: 'address.mapsUrl', label: 'Google Maps link', help: 'Open your restaurant in Google Maps, press Share, and paste the link here.' },
   { path: 'contact.instagram', label: 'Instagram username', help: 'Without the @. This is where every "follow" button on the site points.' },
-  { path: 'contact.phone', label: 'Phone number', required: false, help: 'Written the way guests should read it, e.g. +32 470 15 51 08. Every "Book a table" button calls this number.' },
+  { path: 'contact.phone', label: 'Phone number', required: false, help: 'Written the way guests should read it, e.g. +32 470 15 51 08. Shown under Visit and in the footer, and tapping it calls you.' },
+  { path: 'contact.bookingUrl', label: 'Online booking link', required: false, help: 'The page where guests reserve a table. Every "Book a table" button opens it. Leave empty and the buttons call the phone number instead.' },
   { path: 'contact.email', label: 'Email address', required: false, help: 'Leave empty to hide it; the site writes its own polite line instead.' },
   { path: 'contact.hours', label: 'Opening hours', required: false, multiline: true, help: 'One line per day or group of days — press Alt+Enter inside the cell for a new line. Keep the form "Monday–Friday: 12:00–15:00 and 18:00–00:00" and Google can read the hours too.' },
 
@@ -32,7 +33,7 @@ export const TEXT = [
   { path: 'nav.menu', label: 'Link 3', help: 'Goes to the menu.' },
   { path: 'nav.spaces', label: 'Link 4', help: 'Goes to the Spaces section.' },
   { path: 'nav.visit', label: 'Link 5', help: 'Goes to the Visit section.' },
-  { path: 'nav.book', label: 'Text on the gold "book" button', help: 'The button calls the phone number above. Shown in the menu bar, on the first screen and under Visit.' },
+  { path: 'nav.book', label: 'Text on the gold "book" button', help: 'The button opens the online booking link above. Shown in the menu bar, on the first screen and under Visit.' },
 
   { group: 'The first screen' },
   { path: 'hero.h1', label: 'Main heading', help: 'Small, bottom left of the first screen — and the heading Google reads first. e.g. "Georgian Restaurant in Brussels".' },

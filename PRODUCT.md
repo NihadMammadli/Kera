@@ -8,8 +8,8 @@ The restaurant is open; the sections below describe the site as it was first
 designed, before opening, and their pre-opening premises no longer hold. What
 changed at launch, from the client's launch brief:
 
-- **The primary action is booking.** Every "Book a table" button calls the
-  restaurant; there is no booking system. Gold belongs to that button.
+- **The primary action is booking.** Every "Book a table" button opens the
+  restaurant's Lightspeed reservation page. Gold belongs to that button.
 - **The menu is real.** All of it — food, drinks and the bar, 23 categories —
   sits in the menu section of the one page, as text, with prices.
 - **The building site is gone.** The build-out timeline, the opening date and

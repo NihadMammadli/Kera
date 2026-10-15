@@ -110,6 +110,14 @@ export const Clock = ({ className }: P) => (
   </svg>
 );
 
+/* a table reserved: the page of a booking book, two rings at the top */
+export const Calendar = ({ className }: P) => (
+  <svg {...box} className={className}>
+    <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
+    <path d="M3.5 10h17M8 3v4M16 3v4M8.5 14.5h2M13.5 14.5h2M8.5 17.5h2" />
+  </svg>
+);
+
 export const Phone = ({ className }: P) => (
   <svg {...box} className={className}>
     <path d="M8.1 3.5H5.4A2 2 0 0 0 3.4 5.7c.35 3.6 1.7 7 3.9 9.8a24 24 0 0 0 4.9 4.9c2.8 2.2 6.2 3.5 9.8 3.9V21.7" transform="translate(0 -2)" />

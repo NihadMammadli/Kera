@@ -80,6 +80,13 @@ export const content = {
   phone,
   /* "+32 470 15 51 08" → "tel:+32470155108" */
   tel: phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : '',
+  /* every "Book a table" opens the booking page, in a new tab; with no
+     booking page it falls back to calling */
+  book: t('contact.bookingUrl')
+    ? { href: t('contact.bookingUrl'), target: '_blank', rel: 'noopener' }
+    : phone
+      ? { href: `tel:${phone.replace(/[^\d+]/g, '')}` }
+      : null,
   instagram: handle,
   instagramUrl: `https://instagram.com/${handle}`,
   mapsUrl: t('address.mapsUrl'),

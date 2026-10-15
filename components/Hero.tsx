@@ -52,15 +52,16 @@ export function Hero() {
           {t('hero.scrollLabel')}
         </a>
 
-        {content.tel ? (
-          <a className="micro hero__book" href={content.tel}>
-            {t('nav.book')}
-            <br />
-            <span>{content.phone}</span>
-          </a>
-        ) : (
-          <span />
-        )}
+        {/* booking online above, the number to call below — two links */}
+        <p className="micro hero__book">
+          {content.book && <a {...content.book}>{t('nav.book')}</a>}
+          {content.book && content.tel && <br />}
+          {content.tel && (
+            <a className="hero__phone" href={content.tel}>
+              {content.phone}
+            </a>
+          )}
+        </p>
       </div>
     </section>
   );

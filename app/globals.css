@@ -597,10 +597,11 @@ button { font: inherit; color: inherit; }
 
 .hero__h1 { color: var(--chalk-2); margin-bottom: 0.15rem; }
 
-.hero__book { justify-self: end; text-decoration: none; transition: color 0.35s var(--ease); }
-.hero__book span { color: var(--chalk); transition: color 0.35s var(--ease); }
-.hero__book:hover span,
-.hero__book:focus-visible span { color: var(--gilt); }
+.hero__book { justify-self: end; }
+.hero__book a { text-decoration: none; transition: color 0.35s var(--ease); }
+.hero__book a:first-child { color: var(--chalk); }
+.hero__book a:hover,
+.hero__book a:focus-visible { color: var(--gilt); }
 
 .hero__cue {
   display: grid;
