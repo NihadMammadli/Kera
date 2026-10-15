@@ -1,7 +1,8 @@
 # KERA — Brussels
 
-Pre-opening single-page site for KERA, a Georgian restaurant being built on
-Rue Saint-Quentin in Brussels, opening autumn 2026.
+Single-page site for KERA, a modern Georgian restaurant on Rue Saint-Quentin
+in Brussels, open since 16 October 2026: About Us, Our Cuisine, the full menu,
+Spaces and Visit.
 
 Next.js (App Router) + TypeScript, statically exported. GSAP for motion. No CMS,
 no backend, no runtime data.
@@ -17,60 +18,65 @@ Deploy `out/` anywhere that serves static files.
 
 ## Deploying
 
-`.github/workflows/deploy.yml` publishes to **GitHub Pages** on every push to
-`main`. There is no server: the workflow runs the static export and hands `out/`
-to Pages. `.github/workflows/ci.yml` runs the same install → typecheck → build
-on pull requests, so nothing reaches `main` that cannot be published.
-
-Live at **https://nihadmammadli.github.io/Kera/**. The path is the repo name
-and it is case-sensitive: `/kera/` is a 404.
-
-### The base path, which is the only tricky part
-
-A project repo is served from `/<repo>/`, not from the domain root, so every
-absolute asset URL needs that prefix or it 404s. `next/link`, `next/image` and
-`app/icon.svg` are handled by `basePath` in `next.config.mjs`; a raw `<img src>`
-and everything in `metadata` are not, so they go through `asset()` in
-[lib/paths.ts](lib/paths.ts).
-
-The workflow gets the value from `actions/configure-pages` and passes it in as
-`NEXT_PUBLIC_BASE_PATH`, so **nothing needs editing when the domain changes** —
-add a custom domain in the repo's Pages settings and the next build emits
-root-relative URLs on its own. A build step greps the emitted HTML and fails the
-deploy if the prefix did not land, because a wrong base path produces a page
-that loads and then shows no images at all.
-
-Locally both values are unset, which is correct for `npm run dev`. To see what
-Pages will actually serve:
+Live at **https://www.kera.brussels/**. Every push to `main` publishes it:
+`.github/workflows/deploy.yml` typechecks, builds the static export, uploads
+`out/` to the Hetzner server and fetches the page back from it to check the new
+build is the one being served. `.github/workflows/ci.yml` runs the same install
+→ typecheck → build on pull requests, so nothing reaches `main` that cannot be
+published.
 
 ```bash
-NEXT_PUBLIC_BASE_PATH=/Kera npm run build
-mkdir -p /tmp/pages && rm -rf /tmp/pages/Kera && cp -r out /tmp/pages/Kera
-npx serve /tmp/pages   # then open http://localhost:3000/Kera/
+gh workflow run deploy.yml --ref main   # deploy again without a commit
 ```
 
-### Renaming the repo breaks the live site until the next deploy
+### On the server
 
-The base path is baked into the HTML at build time. Rename the repo and Pages
-starts serving the *old* build from the *new* path: the page itself loads, but
-every stylesheet, script, font and image still points at the old name and
-404s, so the visitor gets unstyled text and no pictures. Nothing redeploys on
-its own, because the workflow only runs on a push to `main`.
+The site shares `95.216.162.140` with the Damla Group app. That server's ports
+80 and 443 belong to Traefik, run by Dokploy, which also issues every Let's
+Encrypt certificate — so KERA does not run its own web server on the host. It
+is one nginx container on Traefik's network, described in [deploy/](deploy/):
 
-After a rename, run the deploy by hand once:
+| On the server | From the repo | What it is |
+|---|---|---|
+| `/opt/kera/docker-compose.yml` | `deploy/docker-compose.yml` | The `kera-web` container and its Traefik routes |
+| `/opt/kera/nginx.conf` | `deploy/nginx.conf` | Static serving, caching, security headers |
+| `/opt/kera/site/` | `out/` | The built site — the only thing a deploy changes |
+
+The routes: `https://www.kera.brussels` is the site; `http://www…` and
+`kera.brussels` (either scheme, path kept) redirect there permanently.
+
+CI uploads with a key that can do one thing — `rsync` into `/opt/kera/site` as
+the unprivileged `kera-deploy` user (`rrsync` is its forced command). It cannot
+open a shell or reach anything else on the box. The private key and the
+server's host key are the repo secrets `KERA_DEPLOY_KEY` and
+`KERA_KNOWN_HOSTS`.
+
+A change to `deploy/` is **not** deployed by CI. Copy it over and restart:
 
 ```bash
-gh workflow run deploy.yml --ref main
+scp deploy/nginx.conf deploy/docker-compose.yml root@95.216.162.140:/opt/kera/
+ssh root@95.216.162.140 'cd /opt/kera && docker compose up -d --force-recreate'
 ```
 
-or Actions → *Deploy to GitHub Pages* → *Run workflow*. `configure-pages`
-picks up the new name and the build follows.
+### DNS
 
-### Other hosts
+The domain's DNS is at behostings.net. `kera.brussels` and `www.kera.brussels`
+are `A` records pointing at `95.216.162.140`. The mail records
+(`mail.kera.brussels`, the `MX` and the SPF `TXT`) stay on behostings and must
+not be touched — email still runs there.
 
-Vercel and Netlify serve from a domain root, so leave both variables unset and
-they will build this repo as-is (`npm run build`, publish `out/`). Only the
-sub-path case needs `NEXT_PUBLIC_BASE_PATH`.
+### The base path
+
+Everything is served from the domain root, so `NEXT_PUBLIC_BASE_PATH` is unset.
+The plumbing for a sub-path (`asset()` in [lib/paths.ts](lib/paths.ts),
+`basePath` in `next.config.mjs`) is still there from the GitHub Pages days; it
+costs nothing at the root.
+
+### Local builds
+
+`next build` and `next dev` write to separate folders (`.next` and `.next-dev`,
+see `next.config.mjs`), so building while the dev server runs no longer breaks
+it. To look at exactly what the server gets: `npm run build && npm start`.
 
 ## Editing content
 
@@ -88,16 +94,18 @@ client revision arrives as a readable git diff.
 
 ### The workbook
 
-Eight sheets, generated from the current site so the client edits over real
+Seven sheets, generated from the current site so the client edits over real
 words rather than filling in a blank form:
 
 | Sheet | What it holds |
 |---|---|
 | **Read me first** | The tutorial, written for a restaurant owner |
-| **Text** | Every single string — 81 of them, each with a plain-language note |
-| **Menu** | One row per dish. A new value in `Category` becomes a new tab |
-| **The kitchen** · **Rooms** · **Progress** · **Georgian words** | The repeatable lists |
-| **Images** | The fixed picture slots, by file name |
+| **Text** | Every single string — 68 of them, each with a plain-language note |
+| **Menu** | One row per dish or drink. A new value in `Category` becomes a new tab |
+| **The kitchen** | The two lists under Our Cuisine — `fire` left, `table` right — each dish with its little drawing |
+| **Spaces** | One photo card per space. A space with no photo is not shown |
+| **Georgian words** | The scrolling strip under the first screen |
+| **Images** | The fixed picture slots, by picture name |
 
 Labels and notes are locked; only the value cells are editable. Choice columns
 are dropdowns. Row insertion and deletion are allowed on every list sheet, so
@@ -111,39 +119,43 @@ so a bad workbook leaves the site exactly as it was:
 ```
 ✗ Text › Section: the rooms › Heading — has an odd number of * characters.
 ✗ Menu › row 2 — "Dish" is empty, and it cannot be.
-✗ Images › The big photo at the very top — names "my-photo.JPG", but there is
-  no such file in public/img/.
+✗ Images › The big photo at the very top — the picture names "my-photo", but
+  there is no picture by that name. The pictures are: ridge, georgian-table, …
 
 content:update — nothing was changed. Fix the workbook and run it again.
 ```
 
 It checks required fields, dropdown values, unbalanced `*`, broken encoding
 (the Georgian script is the thing most likely to be destroyed by saving from
-the wrong program), missing image files, missing `.webp` siblings, and that
-exactly one Progress row is marked `now`.
+the wrong program), and picture names that `npm run images` has not produced.
 
 On success it prints what actually moved before you commit:
 
 ```
-· filled in: Phone number, Opening hours
-· Menu: +3 −1 (29 → 31 rows)
-· Progress: +2 −2 (4 → 4 rows)
+· reworded: 2 fields (Tagline, Opening hours)
+· Menu: +3 −1 (138 → 140 rows)
 ```
 
 ### The conventions the client is taught
 
-- **Empty means pending, not broken.** Clear the phone, email or hours cell and
-  the site writes its own line — *"There is no phone in an empty room yet."*
-  Fill it in and the line resolves itself. Nothing ever renders as a blank gap.
-- **`*stars*` make gold italic.** `five rooms, *none of them* finished`.
+- **Empty means left out, not broken.** Clear a cell and that part of the page
+  goes, rather than rendering as a blank gap. The phone, email and hours fall
+  back to a sentence of the client's own if they ever write one.
+- **`*stars*` make gold italic.** `Visit *KERA* in Brussels`.
 - **Blank line = new paragraph**, `Alt+Enter` = new line inside a cell.
-- **Prices are free text** — `14`, `14,50`, `9 / 42`. The currency symbol is set
-  once on the Text sheet.
+- **Prices are free text** — `15.00`, `6.50 glass / 30.00 bottle`. The currency
+  symbol is set once on the Text sheet and written before every number, so the
+  second reads `€6.50 glass · €30.00 bottle`.
+- **Hours in the form `Monday–Friday: 12:00–15:00 and 18:00–00:00`** are also
+  read into the page's structured data for Google; a line in any other form (the
+  kitchen note) is shown on the page and skipped there.
+- **Every "Book a table" button calls `contact.phone`.** Change the number and
+  they all follow.
 - **`menu.isDraft`** prints the "this is a working draft" note above the tabs.
   It is the client's switch, not yours.
-- **A room shows its drawing until it is given a photograph.** Fill in the two
-  photo columns on the Rooms sheet and that room — only that room — becomes a
-  picture. The building site converts itself one room at a time.
+- **One heading over both kitchen lists.** Leave the right list's heading empty
+  and the left one stands for both; the right list keeps the line so the dishes
+  still start level.
 
 ### Adding a new field
 
@@ -154,18 +166,34 @@ if it is not in the registry, the client cannot change it.
 
 ## Images
 
-`public/img/` holds every shipping image. They are derived from the four
-reference photographs in `images/` with ffmpeg, and each carries its origin in
-its own metadata (`node .claude/skills/impeccable/scripts/embed-prompt.mjs
-public/img/ridge.jpg --read`).
+Every picture is cut and resized by one command:
 
-**None of them are photographs of KERA.** They show Georgia, and the page never
-claims otherwise. The five rooms are drawn rather than photographed for exactly
-this reason. When real photographs of the room exist, they belong in the rooms
-section first.
+```bash
+npm run images
+```
 
-`public/img/og.jpg` is the social preview card, rendered by
-`.impeccable/tools/og.mjs` against the running site.
+`scripts/images.config.mjs` lists each picture: its original, the shape to cut
+it to (matching the arch it is shown in) and which part of the photo to keep.
+The script writes `public/img/<name>-<width>.webp` at 480, 800 and 1200px —
+never wider than the original — and `content/images.json`, which the `Photo`
+component reads to build `srcset`. A phone downloads the 480px file, roughly
+20–50 KB.
+
+The originals are not in git. The client's photos live in `docs/images/`
+(ignored, along with their workbook); the hero is the reference photograph in
+`images/`. To replace a picture, put the new original under the same `src` and
+run the command again; for a new one, add a recipe and give its name to the
+client for the workbook.
+
+Notes on the current set:
+
+- The client calls these photos placeholders, to be replaced. Some look like
+  stock photography — confirm the licence before they stay.
+- `wine-pour` is cut from the top of `wine.kera.jpg` on purpose: the wrapping
+  paper and cloth below carry another restaurant's printed branding.
+
+`public/img/og.jpg` is the social preview card: 1200 × 630 JPEG, because some
+apps still do not show WebP previews.
 
 ## Design
 
@@ -174,19 +202,20 @@ The visual world is recorded in `DESIGN.md`; the durable product record in
 The direction contract ships as an HTML comment at the top of `<body>` and
 survives the production build — `grep fddb4283 out/index.html`.
 
-Two rules are load-bearing and easy to break by accident:
+Three rules are load-bearing and easy to break by accident:
 
 1. **The page renders finished in CSS.** A two-line script in `<head>` adds a
    `motion` class only when motion is welcome, and that class is the only thing
    that hides anything; it removes itself after three seconds if the JavaScript
    never arrives. No visitor is ever left looking at an empty wall. Do not invert
    this by hiding things in the base stylesheet.
-2. **Anchor jumps belong to `Motion.tsx`, not the browser.** The rooms section
-   pins, so native smooth scrolling crawls through the pin's scroll length and
-   reads as the page sticking on the rooms. A delegated click handler tweens the
-   window over a fixed one second instead, whatever the distance.
+2. **Anchor jumps belong to `Motion.tsx`, not the browser.** Native smooth
+   scrolling crawls the whole distance at its own pace. A delegated click
+   handler tweens the window over a fixed one second instead, leaving the same
+   room the browser would: the page's `scroll-padding-top` plus the target's
+   `scroll-margin-top` (which is how a menu category clears the sticky bar).
 3. **Gold is rationed.** `--gilt` means one thing: what is alight — the primary
-   action, an arch as it fires, today's stage of the build. Every other accent is
+   action (Book a table), an arch as it fires. Every other accent is
    pigment (`--cinnabar`, `--ochre`, `--malachite`). Gold used decoratively
    costs the page its only emphasis.
 

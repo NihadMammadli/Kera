@@ -1,0 +1,53 @@
+# KERA on the shared Hetzner server, beside Damla Group.
+#
+# Traefik (run by Dokploy) already owns ports 80/443 and issues Let's Encrypt
+# certificates, so this publishes no ports: it joins Traefik's network and
+# describes its routes in labels. Lives at /opt/kera on the server; CI only
+# ever replaces /opt/kera/site.
+#
+#   cd /opt/kera && docker compose up -d
+
+services:
+  web:
+    image: nginx:1.27-alpine
+    container_name: kera-web
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.services.kera.loadbalancer.server.port=80
+
+      # https://www.kera.brussels — the site
+      - traefik.http.routers.kera.rule=Host(`www.kera.brussels`)
+      - traefik.http.routers.kera.entrypoints=websecure
+      - traefik.http.routers.kera.tls.certresolver=letsencrypt
+      - traefik.http.routers.kera.service=kera
+
+      # http://www → https://www (middleware defined by Dokploy)
+      - traefik.http.routers.kera-http.rule=Host(`www.kera.brussels`)
+      - traefik.http.routers.kera-http.entrypoints=web
+      - traefik.http.routers.kera-http.middlewares=redirect-to-https@file
+      - traefik.http.routers.kera-http.service=kera
+
+      # kera.brussels, http or https → https://www.kera.brussels, path kept
+      - traefik.http.middlewares.kera-www.redirectregex.regex=^https?://kera\.brussels/(.*)
+      - traefik.http.middlewares.kera-www.redirectregex.replacement=https://www.kera.brussels/$${1}
+      - traefik.http.middlewares.kera-www.redirectregex.permanent=true
+      - traefik.http.routers.kera-apex.rule=Host(`kera.brussels`)
+      - traefik.http.routers.kera-apex.entrypoints=websecure
+      - traefik.http.routers.kera-apex.tls.certresolver=letsencrypt
+      - traefik.http.routers.kera-apex.middlewares=kera-www
+      - traefik.http.routers.kera-apex.service=kera
+      - traefik.http.routers.kera-apex-http.rule=Host(`kera.brussels`)
+      - traefik.http.routers.kera-apex-http.entrypoints=web
+      - traefik.http.routers.kera-apex-http.middlewares=kera-www
+      - traefik.http.routers.kera-apex-http.service=kera
+
+networks:
+  dokploy-network:
+    external: true

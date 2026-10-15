@@ -34,9 +34,8 @@ jobs:
       - name: Build the static export
         run: npm run build
         env:
-          # A project repo deploys under /<repo>; build the PR the same way so
-          # a base-path regression fails here rather than on the live site.
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          # built exactly as the deploy builds it
+          NEXT_PUBLIC_SITE_URL: https://www.kera.brussels
 
       - name: Check the export actually produced a page
         run: test -s out/index.html && test -s out/img/og.jpg

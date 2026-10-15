@@ -1,38 +1,34 @@
-# Builds the static export and publishes it to GitHub Pages.
+# Builds the static export and publishes it to the Hetzner server, where it
+# is served by nginx behind the server's Traefik (see deploy/).
 #
-# The site is a Next.js static export, so there is no server to run — Pages
-# serves the contents of out/ directly. The only subtlety is the base path:
-# a project repo is served from https://<user>.github.io/<repo>/, so every
-# absolute asset URL needs that prefix. configure-pages works it out and the
-# build reads it through NEXT_PUBLIC_BASE_PATH (see lib/paths.ts). Add a
-# custom domain later and the same job produces root-relative URLs instead —
-# nothing here needs editing.
+# The upload uses a key that can do one thing: rsync into /opt/kera/site, as
+# the unprivileged kera-deploy user. It cannot open a shell, read anything
+# else, or touch the Damla Group app that shares the server.
 #
-# The prefix is the repo name, case and all, and it is fixed at build time.
-# Renaming the repo leaves the last build pointing at the old name, so run
-# this workflow by hand (workflow_dispatch) straight after a rename.
+# Secrets: KERA_DEPLOY_KEY (that private key) and KERA_KNOWN_HOSTS (the
+# server's host key, so the upload refuses an impostor).
 
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# What the deploy job is allowed to touch.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# Never let two deploys race; let a newer push win, but don't cancel a deploy
-# that is already publishing.
+# Never let two deploys race; a newer push waits for the current one.
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
+env:
+  SERVER: 95.216.162.140
+  SITE: www.kera.brussels
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,10 +37,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-
-      - name: Resolve the Pages URL and base path
-        id: pages
-        uses: actions/configure-pages@v5
 
       - name: Install
         run: npm ci
@@ -59,33 +51,34 @@ jobs:
       - name: Build the static export
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}
+          NEXT_PUBLIC_SITE_URL: https://${{ env.SITE }}
 
-      - name: Tell Pages not to run Jekyll over _next/
-        run: touch out/.nojekyll
-
-      - name: Fail if the base path did not reach the markup
+      - name: Fail if the page does not name its real address
         run: |
-          expected='${{ steps.pages.outputs.base_path }}'
-          expected="${expected%/}"
-          if ! grep -q "src=\"${expected}/img/ridge.jpg\"" out/index.html; then
-            echo "::error::Assets are not prefixed with '${expected}'. Images will 404 on Pages."
-            grep -o 'src="[^"]*ridge[^"]*"' out/index.html | head -1
+          if ! grep -q "rel=\"canonical\" href=\"https://${SITE}/\"" out/index.html; then
+            echo "::error::out/index.html does not carry the canonical https://${SITE}/."
             exit 1
           fi
-          echo "Assets correctly prefixed with '${expected:-<root>}'."
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
+      - name: Upload to the server
+        env:
+          KEY: ${{ secrets.KERA_DEPLOY_KEY }}
+          KNOWN_HOSTS: ${{ secrets.KERA_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/kera && chmod 600 ~/.ssh/kera
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # --delay-updates swaps the new files in together at the end, so a
+          # visitor mid-deploy does not get a page whose bundles are half there
+          rsync -az --delete --delay-updates \
+            -e "ssh -i ~/.ssh/kera -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            out/ "kera-deploy@${SERVER}:/"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Check the server is serving this build
+        run: |
+          want=$(grep -o '/_next/static/chunks/app/page-[^"]*\.js' out/index.html | head -1)
+          # straight to the server, so this works before DNS points there too
+          got=$(curl -sfk --resolve "${SITE}:443:${SERVER}" "https://${SITE}/")
+          echo "$got" | grep -q "$want" || { echo "::error::The server is not serving this build."; exit 1; }
+          curl -sfk -o /dev/null --resolve "${SITE}:443:${SERVER}" "https://${SITE}${want}"
+          echo "Live: https://${SITE}/"
