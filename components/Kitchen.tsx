@@ -3,14 +3,22 @@ import { Arch } from './Arch';
 import { dishIcons, Flame } from './Icons';
 import { Title } from './Title';
 
-function Strand({ title, items }: { title: string; items: Dish[] }) {
+function Strand({ title, items, align }: { title: string; items: Dish[]; align: boolean }) {
   if (!items.length) return null;
   return (
     <div className="strand">
-      {title && (
+      {title ? (
         <h3 className="strand__title" data-reveal>
           {title}
         </h3>
+      ) : (
+        /* one heading over both lists: this side keeps its line so the dishes
+           still start level with the other side's */
+        align && (
+          <div className="strand__title strand__spacer" aria-hidden>
+            {'\u00a0'}
+          </div>
+        )
       )}
       {items.map((d) => {
         const Icon = dishIcons[d.icon as keyof typeof dishIcons] ?? Flame;
@@ -33,9 +41,10 @@ function Strand({ title, items }: { title: string; items: Dish[] }) {
 
 export function Kitchen() {
   const pic = picture('kitchen');
+  const titled = has('kitchen.fireTitle') || has('kitchen.tableTitle');
 
   return (
-    <section className="section" id="kitchen">
+    <section className="section" id="cuisine">
       <div className="shell">
         <div className="kitchen__head">
           <Title text={t('kitchen.title')} />
@@ -52,15 +61,15 @@ export function Kitchen() {
         </div>
 
         <div className="kitchen__grid">
-          <Strand title={t('kitchen.fireTitle')} items={content.kitchen.fire} />
+          <Strand title={t('kitchen.fireTitle')} items={content.kitchen.fire} align={titled} />
 
           {pic && (
             <div className="kitchen__arch">
-              <Arch picture={pic} sizes="(max-width: 1040px) 60vw, 24vw" />
+              <Arch picture={pic} sizes="(max-width: 1040px) min(90vw, 20rem), 24vw" />
             </div>
           )}
 
-          <Strand title={t('kitchen.tableTitle')} items={content.kitchen.table} />
+          <Strand title={t('kitchen.tableTitle')} items={content.kitchen.table} align={titled} />
         </div>
       </div>
     </section>

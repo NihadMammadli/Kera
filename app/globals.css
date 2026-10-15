@@ -44,6 +44,8 @@
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --measure: 66ch;
   --section: clamp(5.5rem, 13vh, 11rem);
+  /* the fixed nav: the burger's 2.75rem plus 0.9rem above and below */
+  --nav-h: 4.6rem;
   --rule: color-mix(in srgb, var(--chalk) 16%, transparent);
   --rule-strong: color-mix(in srgb, var(--chalk) 30%, transparent);
 
@@ -447,6 +449,25 @@ button { font: inherit; color: inherit; }
 }
 
 .sheet a:last-of-type { border-bottom: 0; }
+.sheet a[aria-current='page'] { color: var(--chalk-2); }
+.sheet a svg { width: 0.7em; height: 0.7em; margin-right: 0.45em; vertical-align: 0.02em; }
+.sheet__book { color: var(--gilt) !important; }
+
+/* the phone and the burger, side by side, once the links fold away */
+.nav__phone { display: none; align-items: center; gap: 0.6rem; }
+
+.nav__call {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: linear-gradient(160deg, var(--gilt-hi), var(--gilt) 46%, var(--gilt-deep) 100%);
+  color: var(--plaster-deep);
+  box-shadow: 0 6px 18px -8px rgb(var(--cast) / 0.72);
+}
+
+.nav__call svg { width: 1.1rem; height: 1.1rem; }
 
 /* a phone on its side */
 @media (max-height: 540px) {
@@ -455,12 +476,13 @@ button { font: inherit; color: inherit; }
 }
 
 /* the links and the gilt button stop fitting side by side below ~1010px */
-.nav > .gilt { flex: none; }
+.nav__book { flex: none; }
 
 @media (max-width: 1023px) {
   .nav__links { display: none; }
   .nav__burger { display: flex; flex-direction: column; }
-  .nav > .gilt { display: none; }
+  .nav__book { display: none; }
+  .nav__phone { display: flex; }
 }
 
 .skip {
@@ -572,6 +594,13 @@ button { font: inherit; color: inherit; }
 }
 
 .hero__foot > :last-child { text-align: right; }
+
+.hero__h1 { color: var(--chalk-2); margin-bottom: 0.15rem; }
+
+.hero__book { justify-self: end; text-decoration: none; transition: color 0.35s var(--ease); }
+.hero__book span { color: var(--chalk); transition: color 0.35s var(--ease); }
+.hero__book:hover span,
+.hero__book:focus-visible span { color: var(--gilt); }
 
 .hero__cue {
   display: grid;
@@ -837,139 +866,68 @@ button { font: inherit; color: inherit; }
   .kitchen__grid { grid-template-columns: 1fr; }
 }
 
-/* =============================== the rooms =============================== */
+/* the side without a heading keeps the line, so both lists start level */
+.strand__spacer { visibility: hidden; }
 
-.rooms {
+@media (max-width: 760px) {
+  .strand__spacer { display: none; }
+}
+
+/* ================================ spaces ================================= */
+
+.spaces {
   background:
     radial-gradient(120% 90% at 15% 100%, color-mix(in srgb, var(--cinnabar) 12%, transparent), transparent 62%),
     linear-gradient(180deg, var(--plaster-deep), color-mix(in srgb, var(--plaster) 82%, var(--plaster-deep)));
-  padding-inline: 0;
 }
 
-.rooms__inner {
+.spaces__head {
   display: grid;
-  gap: clamp(2rem, 5vh, 3rem);
-  padding-left: var(--gutter);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 7vh, 4.5rem);
 }
 
-.rooms__head {
+.spaces__track {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  max-width: 1400px;
   display: grid;
-  gap: 1.35rem;
-  align-content: center;
-  max-width: 46rem;
-  padding-right: var(--gutter);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 
-@media (min-width: 901px) {
-  .rooms {
-    min-height: 100svh;
-    display: grid;
-    align-content: center;
-    /* the section pins at the top of the screen, under the fixed nav */
-    padding-block: 5rem clamp(1.5rem, 4vh, 3rem);
-  }
+.space { display: grid; align-content: start; }
+.space__arch { aspect-ratio: 3 / 4; margin-bottom: 1.25rem; }
 
-  .rooms__inner {
-    grid-template-columns: minmax(17rem, 25vw) minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(2rem, 4vw, 4rem);
-  }
-
-  .rooms__head { padding-right: 0; }
-  .rooms__head .title { font-size: clamp(2.1rem, 3.1vw, 3.3rem); }
-  .rooms__head .lead { font-size: var(--step-1); max-width: 30ch; }
-}
-
-.rooms__viewport {
-  position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1.25rem;
-  scrollbar-width: thin;
-}
-
-.rooms__viewport[data-pinned='true'] {
-  overflow: hidden;
-  scroll-snap-type: none;
-  padding-bottom: 0;
-}
-
-.rooms__track {
-  display: flex;
-  gap: clamp(1rem, 2.4vw, 2rem);
-  will-change: transform;
-}
-
-.room {
-  flex: 0 0 auto;
-  width: clamp(15rem, 26vw, 21rem);
-  display: grid;
-  gap: 1.1rem;
-  align-content: start;
-}
-
-.room__plate {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--plaster-lift) 92%, transparent), var(--plaster));
-  overflow: hidden;
-  transition: background 0.6s var(--ease);
-}
-
-.room:hover .room__plate,
-.room:focus-within .room__plate {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--cinnabar) 28%, var(--plaster-lift)), var(--plaster));
-}
-
-.room__plate::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--rule-strong);
-  border-radius: inherit;
-  transition: border-color 0.6s var(--ease);
-}
-
-.room:hover .room__plate::before { border-color: color-mix(in srgb, var(--gilt) 50%, transparent); }
-
-.room__draw {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--chalk-2);
-  transition: color 0.6s var(--ease);
-}
-
-.room:hover .room__draw { color: var(--gilt-hi); }
-.room__draw [data-ink] { fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.room__draw [data-wash] { fill: currentColor; opacity: 0.12; stroke: none; }
-
-.room__name { font-family: var(--display); font-size: var(--step-1); margin: 0 0 0.4rem; color: var(--chalk); }
-.room__meta {
+.space__meta {
   font-size: var(--step--1);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--chalk-3);
-  margin: 0.75rem 0 0;
-}
-.room__text { margin: 0; font-size: var(--step-0s); line-height: 1.6; color: var(--chalk-2); }
-
-.room { scroll-snap-align: center; }
-
-/* after the base .room rule, or the base width wins. While pinned the whole
-   card has to fit on screen, so a short laptop gets a narrower one. */
-@media (min-width: 901px) {
-  .room { width: min(clamp(13rem, 18vw, 17rem), max(11rem, 75svh - 15rem)); }
+  color: var(--ochre);
+  margin: 0 0 0.4rem;
 }
 
+.space__name { font-family: var(--display); font-weight: 400; font-size: var(--step-2); margin: 0 0 0.5rem; color: var(--chalk); line-height: 1.1; }
+.space__text { margin: 0; font-size: var(--step-0s); line-height: 1.6; color: var(--chalk-2); max-width: 40ch; }
+
+@media (max-width: 860px) {
+  .spaces__head { grid-template-columns: 1fr; align-items: start; gap: 1.5rem; }
+}
+
+/* a phone: the spaces sit in a row you swipe, the next one peeking in */
 @media (max-width: 900px) {
-  .rooms__viewport { padding-inline: 0; padding-right: var(--gutter); }
-  .room { width: min(74vw, 20rem); }
+  .spaces__viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding-bottom: 1.25rem;
+    scrollbar-width: thin;
+  }
+  .spaces__track { display: flex; width: max-content; max-width: none; margin: 0; }
+  .space { width: min(74vw, 20rem); scroll-snap-align: start; }
 }
 
 /* =============================== the menu ================================ */
@@ -1127,121 +1085,28 @@ button { font: inherit; color: inherit; }
   .menu__panel { animation: none; }
 }
 
-/* =============================== the work ================================ */
-
-#work {
-  background:
-    radial-gradient(90% 60% at 85% 8%, color-mix(in srgb, var(--malachite) 16%, transparent), transparent 60%),
-    linear-gradient(180deg, color-mix(in srgb, var(--plaster-lift) 55%, var(--plaster)), var(--plaster));
+/* twenty-odd categories: on a computer the niches wrap into rows, since a
+   mouse cannot swipe a strip with no scrollbar; on a phone they stay one row
+   you swipe, fading at the edge to say there is more */
+@media (min-width: 861px) {
+  .menu__tabs { flex-wrap: wrap; overflow: visible; row-gap: 0.25rem; }
 }
-
-.work__head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: end;
-  margin-bottom: clamp(3rem, 8vh, 5.5rem);
-}
-
-.ladder {
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(var(--stages, 4), minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-}
-
-.ladder__line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0.5rem;
-  height: 1px;
-  background: var(--rule);
-}
-
-.ladder__line span {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: var(--fill, 46%);
-  background: var(--gilt);
-  transform-origin: left;
-}
-
-.stage { position: relative; padding-top: 2.5rem; }
-
-.stage__dot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1.05rem;
-  height: 1.05rem;
-  border-radius: 50%;
-  border: 1px solid var(--rule-strong);
-  background: var(--plaster);
-  translate: 0 0;
-}
-
-.stage[data-state='done'] .stage__dot { background: var(--chalk-3); border-color: var(--chalk-3); }
-
-.stage[data-state='now'] .stage__dot {
-  background: var(--gilt);
-  border-color: var(--gilt);
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--gilt) 18%, transparent);
-}
-
-.stage[data-state='now'] .stage__dot::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 50%;
-  border: 1px solid var(--gilt);
-  animation: pulse 2.8s var(--ease) infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  70%, 100% { transform: scale(2.6); opacity: 0; }
-}
-
-.stage__state {
-  font-size: var(--step--1);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin: 0 0 0.7rem;
-  color: var(--chalk-3);
-}
-
-.stage[data-state='now'] .stage__state { color: var(--gilt); }
-.stage__name { font-family: var(--display); font-size: var(--step-1); margin: 0 0 0.35rem; color: var(--chalk); line-height: 1.2; }
-.stage[data-state='next'] .stage__name { color: var(--chalk-2); }
-.stage__text { margin: 0; font-size: var(--step-0s); line-height: 1.6; color: var(--chalk-2); }
-.stage[data-state='next'] .stage__text { color: var(--chalk-3); }
-
-.work__close {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2.5rem);
-}
-
-.work__close p { margin: 0; max-width: 44ch; color: var(--chalk-2); }
 
 @media (max-width: 860px) {
-  #work {
-  background:
-    radial-gradient(90% 60% at 85% 8%, color-mix(in srgb, var(--malachite) 16%, transparent), transparent 60%),
-    linear-gradient(180deg, color-mix(in srgb, var(--plaster-lift) 55%, var(--plaster)), var(--plaster));
+  .menu__tabs {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+  }
 }
 
-.work__head { grid-template-columns: 1fr; align-items: start; gap: 1.5rem; }
-  .ladder { grid-template-columns: 1fr; gap: 0; }
-  .ladder__line { left: 0.5rem; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
-  .ladder__line span { inset: 0 0 auto 0; width: auto; height: var(--fill, 46%); }
-  .stage { padding: 0 0 2.25rem 2.5rem; }
-  .stage:last-child { padding-bottom: 0; }
+/* a glass-and-bottle price takes its own line on a phone rather than crushing
+   the name — and drops the leader, which would point at nothing */
+.plate__price { text-align: right; }
+
+@media (max-width: 480px) {
+  .plate--split .plate__head { flex-wrap: wrap; row-gap: 0.15rem; }
+  .plate--split .plate__rule { display: none; }
+  .plate--split .plate__price { flex-basis: 100%; text-align: left; }
 }
 
 /* =============================== the visit =============================== */
@@ -1324,33 +1189,42 @@ button { font: inherit; color: inherit; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
 
-.list { display: grid; gap: 0.75rem; padding-top: clamp(1.25rem, 3vh, 2rem); border-top: 1px solid var(--rule); }
-.list__title { font-family: var(--display); font-size: var(--step-1); margin: 0; color: var(--chalk); }
-
-.list__form { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-
-.list__form input {
-  flex: 1 1 14rem;
-  min-width: 0;
-  padding: 0.85em 1.1em;
-  border: 1px solid var(--rule-strong);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--plaster-deep) 70%, transparent);
-  color: var(--chalk);
-  font: inherit;
-  font-size: var(--step-0s);
-  caret-color: var(--gilt);
-  transition: border-color 0.35s var(--ease);
+/* the map: an arch-topped niche until a visitor asks for Google */
+.mapcard {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--rule);
+  border-radius: 999px 999px 0 0 / clamp(5rem, 14vw, 9rem) clamp(5rem, 14vw, 9rem) 0 0;
+  overflow: hidden;
+  background:
+    radial-gradient(80% 60% at 50% 30%, color-mix(in srgb, var(--ochre) 14%, transparent), transparent 70%),
+    var(--plaster-deep);
 }
 
-.list__form input::placeholder { color: var(--chalk-3); }
-.list__form input:hover { border-color: color-mix(in srgb, var(--chalk) 45%, transparent); }
-.list__form input:focus-visible { border-color: var(--gilt); outline-offset: 2px; }
-.list__form button:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.mapcard__cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
 
-.list__note { margin: 0; font-size: var(--step--1); color: var(--chalk-3); }
-.list__reply { margin: 0; font-size: var(--step-0s); color: var(--gilt); display: flex; align-items: center; gap: 0.5rem; }
-.list__reply svg { width: 1rem; height: 1rem; flex: none; }
+.mapcard__pin { width: 1.8rem; height: 1.8rem; color: var(--ochre); }
+.mapcard__address { margin: 0; font-family: var(--display); font-size: var(--step-1); line-height: 1.35; color: var(--chalk); }
+.mapcard__note { margin: 0; max-width: 32ch; font-size: var(--step--1); color: var(--chalk-3); }
+
+/* Google's light map, turned to night so it sits in the plaster */
+.mapcard__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(0.9) hue-rotate(180deg) saturate(0.6) contrast(0.92);
+}
 
 @media (max-width: 860px) {
   .visit__grid { grid-template-columns: 1fr; }
@@ -1449,14 +1323,3 @@ button { font: inherit; color: inherit; }
 .motion [data-hero-foot] > * { opacity: 0; }
 .motion [data-arch-veil] { clip-path: inset(100% 0% 0% 0%); }
 .motion .arch__rule { clip-path: inset(100% 0% 0% 0%); }
-
-/* a room switches from its drawing to a photograph the moment the client
-   names one in the workbook; the plate keeps its shape either way */
-.room__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.94) contrast(1.04);
-}

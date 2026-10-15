@@ -29,11 +29,10 @@ export function Motion() {
   /**
    * Anchor navigation, taken off the browser.
    *
-   * Native smooth scrolling covers the whole distance at its own pace, and the
-   * rooms section pins — so a jump to a later section crawls through the pin's
-   * scroll length and reads as being stuck on the rooms. This tweens the
-   * window over a fixed duration instead, so every jump takes the same second
-   * whatever is pinned between here and there.
+   * Native smooth scrolling covers the whole distance at its own pace, so a
+   * jump from the top to Visit crawls past every section on the way. This
+   * tweens the window over a fixed duration instead, so every jump takes the
+   * same second whatever lies between here and there.
    */
   useEffect(() => {
     const root = document.documentElement;
@@ -52,8 +51,12 @@ export function Motion() {
 
       e.preventDefault();
 
-      const nav = document.querySelector<HTMLElement>('.nav');
-      const offsetY = hash === '#top' ? 0 : (nav?.offsetHeight ?? 72) + 8;
+      /* the same room the browser leaves on a native jump: the page's
+         scroll-padding (the nav) plus the target's own scroll-margin (e.g. a
+         menu category under the sticky food / bar switch) */
+      const padding = parseFloat(getComputedStyle(root).scrollPaddingTop) || 88;
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      const offsetY = hash === '#top' ? 0 : padding + margin;
       const settle = () => {
         history.replaceState(null, '', hash);
         target.setAttribute('tabindex', '-1');
@@ -90,19 +93,9 @@ export function Motion() {
       {
         motion: '(prefers-reduced-motion: no-preference)',
         desktop: '(min-width: 901px)',
-        /* a pinned section cannot be scrolled, so all of it has to fit on
-           screen — a phone on its side swipes the rooms instead */
-        pinnable: '(min-width: 901px) and (min-height: 600px)',
-        /* matches the stylesheet, which stands the ladder up at 860px */
-        across: '(min-width: 861px)',
       },
       (ctx) => {
-        const { motion, desktop, pinnable, across } = ctx.conditions as {
-          motion: boolean;
-          desktop: boolean;
-          pinnable: boolean;
-          across: boolean;
-        };
+        const { motion, desktop } = ctx.conditions as { motion: boolean; desktop: boolean };
         if (!motion) return;
 
         /* ------------------------------------------------------ the arches */
@@ -165,12 +158,14 @@ export function Motion() {
             );
         }
 
-        gsap.to('.hero__stage', {
-          yPercent: 12,
-          opacity: 0.35,
-          ease: 'none',
-          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-        });
+        if (document.querySelector('.hero__stage')) {
+          gsap.to('.hero__stage', {
+            yPercent: 12,
+            opacity: 0.35,
+            ease: 'none',
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+          });
+        }
 
         /* dust in the lamplight — hero only, desktop only, and cheap */
         const motes = document.querySelector('[data-motes]');
@@ -245,56 +240,6 @@ export function Motion() {
             scrollTrigger: { trigger: el, start: 'top 88%', once: true },
           });
         });
-
-        /* -------------------------------------------------- rooms, pinned */
-        const section = document.querySelector<HTMLElement>('[data-rooms]');
-        const viewport = document.querySelector<HTMLElement>('[data-rooms-viewport]');
-        const roomTrack = document.querySelector<HTMLElement>('[data-rooms-track]');
-
-        if (pinnable && section && viewport && roomTrack) {
-          viewport.dataset.pinned = 'true';
-          const distance = () => Math.max(0, roomTrack.scrollWidth - viewport.clientWidth);
-          if (distance() > 0) {
-            gsap.to(roomTrack, {
-              x: () => -distance(),
-              ease: 'none',
-              scrollTrigger: {
-                trigger: section,
-                start: 'top top',
-                end: () => `+=${distance()}`,
-                pin: true,
-                scrub: 0.7,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-              },
-            });
-          }
-        }
-
-        /* -------------------------------------------------------- the ladder */
-        const fillEl = document.querySelector<HTMLElement>('[data-ladder-fill]');
-        if (fillEl) {
-          gsap.from(
-            fillEl,
-            across
-              ? { scaleX: 0, transformOrigin: 'left center' }
-              : { scaleY: 0, transformOrigin: 'center top' },
-          );
-          gsap.to(fillEl, {
-            scaleX: 1,
-            scaleY: 1,
-            duration: 1.6,
-            ease: 'power2.inOut',
-            scrollTrigger: { trigger: '[data-ladder]', start: 'top 78%', once: true },
-          });
-        }
-
-        /* the pin reverts itself when the screen stops qualifying (a window
-           made shorter, devtools docked below); the flag that hides the
-           scrollbar does not, and would leave the rooms unreachable */
-        return () => {
-          if (viewport) delete viewport.dataset.pinned;
-        };
       },
     );
 

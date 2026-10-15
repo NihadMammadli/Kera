@@ -7,11 +7,11 @@ export function NameSection() {
   const pic = picture('story');
 
   return (
-    <section className="section" id="name">
+    <section className="section" id="about">
       <div className="shell name">
         {pic && (
           <div className="name__arch">
-            <Arch picture={pic} sizes="(max-width: 860px) 60vw, 32vw" />
+            <Arch picture={pic} sizes="(max-width: 860px) min(90vw, 22rem), 32vw" />
           </div>
         )}
 

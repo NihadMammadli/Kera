@@ -2,6 +2,25 @@
 
 <!-- impeccable:product-schema 1 -->
 
+## Status — open since 16 October 2026
+
+The restaurant is open; the sections below describe the site as it was first
+designed, before opening, and their pre-opening premises no longer hold. What
+changed at launch, from the client's launch brief:
+
+- **The primary action is booking.** Every "Book a table" button calls the
+  restaurant; there is no booking system. Gold belongs to that button.
+- **The menu is real.** All of it — food, drinks and the bar, 23 categories —
+  sits in the menu section of the one page, as text, with prices.
+- **The building site is gone.** The build-out timeline, the opening date and
+  the "tell me when you open" form were removed. Spaces show photographs; the
+  room drawings were retired with them.
+- **Search matters now.** The visible H1 is "Georgian Restaurant in Brussels";
+  the page has its own title, description and canonical on
+  `https://www.kera.brussels/`, and the page carries Restaurant structured data
+  with the opening hours.
+- **The photographs are placeholders** the client will replace.
+
 ## Platform
 
 web

@@ -1,6 +1,6 @@
 import { content, t, has, picture } from '@/content';
-import { OpeningList } from './OpeningList';
 import { Arch } from './Arch';
+import { MapCard } from './MapCard';
 import { Clock, Envelope, Instagram, Phone, Pin } from './Icons';
 import { Em, Lines } from './Rich';
 import { Title } from './Title';
@@ -30,14 +30,19 @@ export function Visit() {
     {
       label: t('visit.label.hours'),
       icon: Clock,
-      value: has('contact.hours') ? <Lines text={t('contact.hours')} /> : t('visit.pending.hours'),
+      /* "18:00–00:00" stays on one line: the dash is joined to its times */
+      value: has('contact.hours') ? (
+        <Lines text={t('contact.hours').replace(/(\d)\s*[–-]\s*(\d)/g, '$1\u2060–\u2060$2')} />
+      ) : (
+        t('visit.pending.hours')
+      ),
       pending: !has('contact.hours'),
     },
     {
       label: t('visit.label.phone'),
       icon: Phone,
       value: has('contact.phone') ? (
-        <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`}>{t('contact.phone')}</a>
+        <a href={content.tel}>{t('contact.phone')}</a>
       ) : (
         t('visit.pending.phone')
       ),
@@ -62,7 +67,8 @@ export function Visit() {
 
         <div className="visit__grid">
           <div className="facts">
-            {facts.map(({ label, icon: Icon, value, pending }) => (
+            {/* a fact with nothing to say, not even its fallback line, is left out */}
+            {facts.filter((f) => !f.pending || f.value).map(({ label, icon: Icon, value, pending }) => (
               <div className="fact" key={label} data-pending={pending ? 'true' : undefined} data-reveal>
                 <Icon className="fact__icon" />
                 <div>
@@ -75,31 +81,37 @@ export function Visit() {
 
           <div className="visit__act">
             <div className="actions" data-reveal>
-              <a className="gilt" href={content.instagramUrl} target="_blank" rel="noreferrer noopener">
-                <Instagram />
-                {t('visit.followLabel')}
-              </a>
+              {content.tel && (
+                <a className="gilt" href={content.tel}>
+                  <Phone />
+                  {t('nav.book')}
+                </a>
+              )}
               <a className="ghost" href={content.mapsUrl} target="_blank" rel="noreferrer noopener">
                 <Pin />
                 {t('visit.mapsLabel')}
               </a>
+              <a className="ghost" href={content.instagramUrl} target="_blank" rel="noreferrer noopener">
+                <Instagram />
+                {t('visit.followLabel')}
+              </a>
             </div>
 
-            <OpeningList />
+            <MapCard />
           </div>
         </div>
 
         <div className="visit__close">
           {pic && (
             <div className="visit__closeArch">
-              <Arch picture={pic} sizes="(max-width: 860px) 70vw, 26vw" />
+              <Arch picture={pic} sizes="(max-width: 860px) 13rem, 20rem" />
             </div>
           )}
           <p className="visit__statement" data-split="lines">
             <Em text={t('visit.statement')} />
           </p>
           <p className="micro" data-reveal>
-            {t('brand.cuisine')} · {t('hero.openingLabel')} {t('opening.value')}
+            {t('brand.cuisine')}
           </p>
         </div>
       </div>

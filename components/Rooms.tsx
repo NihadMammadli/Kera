@@ -1,67 +1,47 @@
 import { content, t, has } from '@/content';
-import { asset } from '@/lib/paths';
-import { RoomDrawing } from './RoomDrawing';
+import { Arch } from './Arch';
 import { Title } from './Title';
 
 /**
- * Each room is a drawing until the client names a photograph for it in the
- * workbook, at which point that room — and only that room — becomes a picture.
- * The building site converts itself, one room at a time.
+ * The spaces, one arch each. A space the client has not given a photograph is
+ * left out rather than drawn — the drawings belonged to the building site.
+ * Three across on a computer; on a phone they sit in a row you swipe.
  */
 export function Rooms() {
   const rooms = content.rooms;
   if (!rooms.length) return null;
 
   return (
-    <section className="section rooms" id="rooms" data-rooms>
-      <div className="rooms__inner">
-        <div className="rooms__head">
+    <section className="section spaces" id="spaces">
+      <div className="shell">
+        <div className="spaces__head">
           <Title text={t('rooms.title')} />
-          <p className="lead" data-split="lines">
-            {t('rooms.lead')}
-          </p>
-          {has('rooms.note') && (
-            <p className="note" data-reveal>
-              {t('rooms.note')}
+          <div>
+            <p className="lead" data-split="lines" style={{ maxWidth: '38ch' }}>
+              {t('rooms.lead')}
             </p>
-          )}
-        </div>
-
-        <div className="rooms__viewport" data-rooms-viewport>
-          <div className="rooms__track" data-rooms-track>
-            {rooms.map((room, i) => {
-              const webp = room.image.replace(/\.(jpe?g|png)$/i, '.webp');
-              return (
-                <article className="room" key={room.name} data-reveal>
-                  <div className="room__plate">
-                    {room.image ? (
-                      <picture>
-                        {webp !== room.image && (
-                          <source srcSet={asset(`/img/${webp}`)} type="image/webp" />
-                        )}
-                        <img
-                          className="room__photo"
-                          src={asset(`/img/${room.image}`)}
-                          alt={room.imageAlt}
-                          loading="lazy"
-                          decoding="async"
-                          sizes="(max-width: 900px) 74vw, 18vw"
-                        />
-                      </picture>
-                    ) : (
-                      <RoomDrawing kind={i % 5} className="room__draw" />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="room__name">{room.name}</h3>
-                    <p className="room__text">{room.text}</p>
-                    {room.meta && <p className="room__meta">{room.meta}</p>}
-                  </div>
-                </article>
-              );
-            })}
+            {has('rooms.note') && (
+              <p className="note" data-reveal style={{ marginTop: '1.5rem' }}>
+                {t('rooms.note')}
+              </p>
+            )}
           </div>
         </div>
+      </div>
+
+      <div className="spaces__viewport">
+        <ul className="spaces__track">
+          {rooms.map((room) => (
+            <li className="space" key={room.name} data-reveal>
+              <div className="space__arch">
+                <Arch picture={{ file: room.image, alt: room.imageAlt }} sizes="(max-width: 900px) min(74vw, 20rem), 28vw" />
+              </div>
+              {room.meta && <p className="space__meta">{room.meta}</p>}
+              <h3 className="space__name">{room.name}</h3>
+              <p className="space__text">{room.text}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

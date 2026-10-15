@@ -1,5 +1,6 @@
 node_modules/
 .next/
+.next-dev/
 out/
 .DS_Store
 *.log
@@ -7,6 +8,7 @@ out/
 .impeccable/review/
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+/docs 
 
 # generated from content/site.json by "npm run content:export"
 kera-content.xlsx

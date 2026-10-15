@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useRef, useState } from 'react';
-import { content, t } from '@/content';
+import { content, t, price } from '@/content';
 import { Braid } from './Icons';
 import { Title } from './Title';
 
@@ -87,16 +87,16 @@ export function Menu() {
           key={active}
         >
           {current.items.map((item) => (
-            <article className="plate" key={`${item.name}-${item.price}`}>
+            <article
+              className={`plate${item.price.includes('/') ? ' plate--split' : ''}`}
+              key={`${item.name}-${item.price}`}
+            >
               <h3 className="plate__head">
                 <span className="plate__name">{item.name}</span>
                 {item.price && (
                   <>
                     <span className="plate__rule" aria-hidden />
-                    <span className="plate__price">
-                      {content.currency}
-                      {item.price}
-                    </span>
+                    <span className="plate__price">{price(item.price)}</span>
                   </>
                 )}
               </h3>

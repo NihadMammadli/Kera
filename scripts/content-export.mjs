@@ -65,17 +65,18 @@ function introRow(ws, span, text) {
     ['h2', 'The five things to know'],
     ['n', '1.  Only type in the white cells. The grey ones are labels and notes; they are locked so they cannot be changed by accident.'],
     ['n', '2.  Do not rename the tabs at the bottom, and do not add or remove columns. Adding and removing ROWS is fine and expected.'],
-    ['n', '3.  To leave something out, clear the cell and leave it empty. On the phone number, the email and the opening hours the website then writes its own polite sentence — it never shows a blank space.'],
-    ['n', '4.  Put *stars* around a few words in a heading and they turn gold and italic on the site. For example: five rooms, *none of them* finished'],
+    ['n', '3.  To leave something out, clear the cell and leave it empty. The website simply leaves that part out — it never shows a blank space.'],
+    ['n', '4.  Put *stars* around a few words in a heading and they turn gold and italic on the site. For example: Visit *KERA* in Brussels'],
     ['n', '5.  To start a new line inside a cell, hold Alt and press Enter.'],
     ['h2', 'The Menu tab'],
-    ['n', 'One row is one dish. To add a dish, add a row. To add a whole new category — appetizers, lunch, anything — simply type its name in the first column, and a new tab appears on the website automatically.'],
+    ['n', 'One row is one dish or drink. To add one, add a row. To add a whole new category — appetizers, cocktails, anything — simply type its name in the first column, and a new tab appears on the website automatically.'],
     ['n', 'Only "Category" and "Dish" must be filled in. A dish with no Georgian name, no description or no price is fine; the website simply leaves that part out.'],
-    ['n', 'Write prices however you like: 14, or 14,50, or 9 / 42 for a glass and a bottle. Do not type the € — that is set once on the Text tab.'],
+    ['n', 'Write prices however you like: 14.50, or 6.50 glass / 30.00 bottle. Do not type the € — that is set once on the Text tab.'],
     ['h2', 'Photographs'],
-    ['n', 'The website cannot receive pictures through this file. Write the file name in the "Photo" columns — for example dining-room.jpg — and send the picture files in the same email.'],
-    ['n', 'Pictures should be standing up (taller than wide), except the sharing preview which must be lying down at exactly 1200 × 630.'],
-    ['n', 'On the Rooms tab, every room is shown as a drawing until you give it a photograph. Fill in the photo columns for one room and that room — only that room — becomes your picture.'],
+    ['n', 'The website cannot receive pictures through this file. To change a photo, send the new picture file by email and say which one it replaces; your developer prepares it in every size the site needs and tells you its name.'],
+    ['n', 'The "Photo" columns and the Images tab hold those names (for example khinkali or terrace). Change a name only to swap in a picture you have already been given.'],
+    ['n', 'Each photo is shown inside an arch, so pictures that are standing up (taller than wide) work best.'],
+    ['n', 'On the Spaces tab, a space without a photo is not shown at all.'],
     ['h2', 'Before you send it back'],
     ['n', 'Save it as an Excel file (.xlsx). If you are working in Google Sheets, use File → Download → Microsoft Excel.'],
     ['n', 'Do not open this file in Word or a plain text editor — the Georgian letters will be destroyed.'],
@@ -218,8 +219,8 @@ for (const sheet of SHEETS) {
 {
   const ws = wb.addWorksheet('Images', { properties: { tabColor: { argb: OCHRE } } });
   ws.columns = [{ width: 46 }, { width: 26 }, { width: 58 }, { width: 16, hidden: true }];
-  introRow(ws, 3, 'Write the file name of each picture here and send the picture files in the same email. The description is read aloud to blind visitors and used by Google, so say what is actually in the photograph.');
-  headerRow(ws, ['Where it appears', 'File name', 'Description of the picture', 'id']);
+  introRow(ws, 3, 'The picture shown in each place, by the name your developer gave it. The description is read aloud to blind visitors and used by Google, so say what is actually in the photograph.');
+  headerRow(ws, ['Where it appears', 'Picture name', 'Description of the picture', 'id']);
   ws.views = [{ state: 'frozen', ySplit: 2 }];
 
   for (const slot of IMAGES) {

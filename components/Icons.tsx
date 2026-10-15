@@ -185,12 +185,6 @@ export const Braid = ({ className }: P) => (
   </svg>
 );
 
-export const Check = ({ className }: P) => (
-  <svg {...box} className={className}>
-    <path d="M4.5 12.8 9.4 17.7 19.6 7.4" />
-  </svg>
-);
-
 export const dishIcons = {
   skewer: Skewer,
   bread: Bread,

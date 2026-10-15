@@ -12,7 +12,7 @@ export function Hero() {
 
         {hero && (
           <div className="hero__arch">
-            <Arch picture={hero} sizes="(max-width: 720px) 78vw, 34vw" priority />
+            <Arch picture={hero} sizes="(max-width: 720px) 78vw, 27rem" priority />
           </div>
         )}
 
@@ -22,15 +22,17 @@ export function Hero() {
         </p>
 
         <div>
-          <h1 className="hero__word" data-hero-word>
+          {/* the wordmark is the brand, not the page's heading — that is the
+              h1 below, which says what this place is in words Google reads */}
+          <p className="hero__word" data-hero-word aria-label={t('brand.name')}>
             {t('brand.name')
               .split('')
               .map((c, i) => (
-                <span className="glyph" key={i}>
-                  {c === ' ' ? ' ' : c}
+                <span className="glyph" key={i} aria-hidden>
+                  {c === ' ' ? ' ' : c}
                 </span>
               ))}
-          </h1>
+          </p>
           <p className="hero__line" data-hero-line>
             {t('brand.tagline')}
           </p>
@@ -38,22 +40,27 @@ export function Hero() {
       </div>
 
       <div className="hero__foot" data-hero-foot>
-        <p className="micro">
-          {t('brand.cuisine')}
-          <br />
-          {t('address.street')}, {t('address.city')}
-        </p>
+        <div>
+          <h1 className="micro hero__h1">{t('hero.h1')}</h1>
+          <p className="micro">
+            {t('address.street')}, {t('address.city')}
+          </p>
+        </div>
 
-        <a className="hero__cue" href="#name">
+        <a className="hero__cue" href="#about">
           <ArrowDown />
           {t('hero.scrollLabel')}
         </a>
 
-        <p className="micro">
-          {t('hero.openingLabel')}
-          <br />
-          {t('opening.value')}
-        </p>
+        {content.tel ? (
+          <a className="micro hero__book" href={content.tel}>
+            {t('nav.book')}
+            <br />
+            <span>{content.phone}</span>
+          </a>
+        ) : (
+          <span />
+        )}
       </div>
     </section>
   );

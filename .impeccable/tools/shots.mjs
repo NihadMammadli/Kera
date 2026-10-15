@@ -5,7 +5,7 @@ const URL = process.env.URL || 'http://localhost:4123/';
 const OUT = '.impeccable/review';
 fs.mkdirSync(OUT, { recursive: true });
 
-const SECTIONS = ['#top', '#name', '#kitchen', '#rooms', '#menu', '#work', '#visit'];
+const SECTIONS = ['#top', '#about', '#cuisine', '#menu', '#spaces', '#visit'];
 
 const browser = await chromium.launch({ channel: 'chrome' });
 

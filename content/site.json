@@ -3,425 +3,1230 @@
   "text": {
     "brand.name": "KERA",
     "brand.nameGeorgian": "კერა",
-    "brand.tagline": "where fire becomes tradition",
-    "brand.cuisine": "Georgian kitchen",
+    "brand.tagline": "Where Cultures Meet",
+    "brand.cuisine": "Modern Georgian Cuisine in Brussels",
     "address.street": "Rue Saint-Quentin 29",
     "address.city": "Brussels",
     "address.country": "Belgium",
     "address.mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rue+Saint-Quentin+29%2C+Brussels%2C+Belgium",
-    "opening.value": "autumn 2026",
     "contact.instagram": "kera_brussels",
-    "contact.phone": "",
-    "contact.email": "",
-    "contact.hours": "",
-    "contact.newsletterUrl": "",
-    "nav.name": "the name",
-    "nav.kitchen": "the kitchen",
-    "nav.rooms": "the rooms",
-    "nav.menu": "the menu",
-    "nav.work": "the work",
-    "nav.visit": "visit",
+    "contact.phone": "+32 470 15 51 08",
+    "contact.email": "kera.brussels@gmail.com",
+    "contact.hours": "Monday–Friday: 12:00–15:00 and 18:00–00:00\nSaturday: 17:00–00:00\nSunday: Closed\nKitchen closes at 22:00 during evening service.",
+    "nav.about": "About Us",
+    "nav.cuisine": "Our Cuisine",
+    "nav.menu": "Menu",
+    "nav.spaces": "Spaces",
+    "nav.visit": "Visit",
+    "nav.book": "Book a table",
+    "hero.h1": "Georgian Restaurant in Brussels",
     "hero.inscription": "the hearth",
-    "hero.openingLabel": "opening",
-    "hero.scrollLabel": "scroll",
-    "story.title": "the heart *of the* home",
-    "story.lead": "In Georgian, kera is the heart of the home — the place where people gather, stories are shared, exceptional food is prepared, and unforgettable memories are made.",
-    "story.body": "That is why we chose this name.\n\nA Georgian house is arranged around its fire. It is where the bread is baked, where the pot sits, where guests are put closest in winter, and where the evening ends long after the food has gone cold. Everything else in the house is furniture.\n\nWe are building one of those in Brussels.",
+    "hero.scrollLabel": "discover",
+    "story.title": "Welcome to *KERA*",
+    "story.lead": "In Georgian, KERA means hearth — the heart of a home, where people gather, share food and spend time together.",
+    "story.body": "Welcome to KERA, a modern Georgian restaurant in Brussels. We bring Georgian cooking traditions together with an Azerbaijani touch, a contemporary approach and warm hospitality.\n\nWe believe a good meal is about more than food. It is about sharing the table, enjoying the moment and feeling welcome.",
     "story.proverb.ka": "სტუმარი ღვთისაა",
     "story.proverb.latin": "stumari ghvtisaa",
-    "story.proverb.gloss": "a guest is a gift from God",
-    "story.proverb.note": "Georgian proverb, still meant literally",
-    "kitchen.title": "modern Georgian, *rooted in* the Caucasus",
-    "kitchen.lead": "KERA is where modern Georgian cuisine meets the rich flavours of the Caucasus. Our menu is inspired by Georgian culinary traditions, reimagined with a contemporary touch, and complemented by a carefully selected collection of Azerbaijani specialities.",
-    "kitchen.note": "Six things worth knowing before you sit down — the tradition the kitchen is built on.",
-    "kitchen.fireTitle": "from the fire",
-    "kitchen.tableTitle": "from the table",
-    "rooms.title": "five rooms, *none of them* finished",
-    "rooms.lead": "Our space will feature two elegant dining halls, a private room, a beautiful terrace, and a welcoming veranda — designed to make every guest feel at home.",
-    "rooms.note": "There is no photograph of any of this yet, because it is still a building site. So these are drawings.",
-    "menu.title": "a first look at *the table*",
-    "menu.lead": "Georgian food is ordered for the table, not for the person. Everything below arrives at once, and everything below is meant to be reached across.",
-    "menu.isDraft": "yes",
-    "menu.draftNote": "A working draft. These dishes and prices are placeholders while the kitchen writes the real menu — the shape is right, the list is not final.",
+    "story.proverb.gloss": "A guest is a gift from God",
+    "story.proverb.note": "A Georgian expression of hospitality",
+    "kitchen.title": "Our Cuisine — *Tradition with a Modern Touch*",
+    "kitchen.lead": "Discover Georgian cuisine in Brussels through traditional recipes, modern interpretations and the flavours of the Caucasus. Our signature favourites include eggplant with walnuts, khachapuri, khinkali and chkmeruli.",
+    "kitchen.note": "Four signature dishes from the KERA menu.",
+    "kitchen.fireTitle": "Signature Dishes",
+    "kitchen.tableTitle": "",
+    "rooms.title": "Our *Spaces*",
+    "rooms.lead": "Find your place at KERA, whether you are joining us for lunch, dinner, a private gathering or a relaxed meal outdoors.",
+    "rooms.note": "",
+    "menu.title": "Explore *Our Menu*",
+    "menu.lead": "Explore the KERA food menu, from khinkali and khachapuri to traditional Georgian dishes and modern favourites. Our separate bar menu features Georgian wines, chacha and other drinks.",
+    "menu.isDraft": "no",
+    "menu.draftNote": "",
     "menu.currency": "€",
     "menu.columns": "2",
-    "work.title": "right now, *the most exciting* part",
-    "work.lead": "We are painting, building, decorating, and perfecting every detail with passion and care — to create a place where tradition, flavour and modern hospitality come together.",
-    "work.close": "Every day we share our progress, the behind-the-scenes, and the story of how KERA is coming to life. Follow along and be part of our beginning.",
-    "work.ctaLabel": "watch it happen",
-    "visit.title": "the door on *rue saint-quentin*",
+    "visit.title": "Visit *KERA* in Brussels",
     "visit.statement": "Welcome home. *Welcome to KERA.*",
-    "visit.followLabel": "follow the build",
-    "visit.mapsLabel": "open in maps",
+    "visit.followLabel": "Follow KERA",
+    "visit.mapsLabel": "Get Directions",
+    "visit.mapButton": "show the map",
+    "visit.mapNote": "The map is Google Maps, loaded only when you ask for it.",
     "visit.label.address": "address",
-    "visit.label.hours": "hours",
+    "visit.label.hours": "opening hours",
     "visit.label.phone": "phone",
     "visit.label.email": "email",
-    "visit.pending.hours": "Set when the doors are.",
-    "visit.pending.phone": "There is no phone in an empty room yet.",
-    "visit.pending.email": "Coming with the kitchen.",
-    "list.title": "or be told once, when we open",
-    "list.note": "One message. The day we open. Nothing else, ever.",
-    "list.placeholder": "you@example.com",
-    "list.button": "tell me",
-    "list.buttonBusy": "sending",
-    "list.inputLabel": "Your email address",
-    "list.replyOff": "The list is not switched on yet — we are still building the room, let alone the mailing list. Follow @ and you will know the same day we do.",
-    "list.replyDone": "You are on the list. One message, the day we open.",
-    "list.replyError": "That did not send — the fault is ours, not yours. Try again, or find us at @.",
-    "footer.credit": "Built in Brussels, out of Georgia",
-    "footer.backToTop": "back to the top",
-    "seo.title": "KERA — a Georgian hearth in Brussels | opening autumn 2026",
-    "seo.description": "KERA is a Georgian restaurant being built on Rue Saint-Quentin in Brussels, opening autumn 2026. Kera is the Georgian word for hearth — the fire a house is built around. Follow the build.",
-    "seo.keywords": "Georgian restaurant Brussels, KERA Brussels, khachapuri Brussels, supra, Caucasus, Rue Saint-Quentin",
+    "visit.pending.hours": "",
+    "visit.pending.phone": "",
+    "visit.pending.email": "",
+    "footer.credit": "KERA · Modern Georgian Cuisine in Brussels",
+    "footer.backToTop": "back to top",
+    "seo.title": "KERA | Georgian Restaurant in Brussels",
+    "seo.description": "Discover KERA, a Georgian restaurant in Brussels serving modern Georgian cuisine, khinkali, khachapuri and Georgian wines. Explore our food and bar menus.",
+    "seo.keywords": "Georgian restaurant Brussels; Georgian cuisine Brussels; Georgian food Brussels; khinkali Brussels; khachapuri Brussels; Georgian wine Brussels; modern Georgian restaurant; restaurant near European Quarter",
     "a11y.skip": "Skip to content",
-    "a11y.navSections": "Sections",
+    "a11y.navSections": "Website sections",
     "a11y.navHome": "KERA, back to top",
-    "a11y.menuOpen": "Open menu",
-    "a11y.menuClose": "Close menu",
-    "a11y.bandLabel": "Georgian words this restaurant is built from",
+    "a11y.menuOpen": "Open navigation",
+    "a11y.menuClose": "Close navigation",
+    "a11y.bandLabel": "Georgian words and hospitality",
     "a11y.menuTabs": "Menu categories",
     "a11y.instagram": "KERA on Instagram, @"
   },
   "menu": [
     {
-      "category": "starters",
-      "categoryKa": "საწყისი",
-      "name": "pkhali, three ways",
-      "ka": "ფხალი",
-      "text": "Spinach, beetroot and nettle, each pounded with walnut and pomegranate.",
-      "price": "14"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Eggplant with Walnuts",
+      "ka": "",
+      "text": "Georgian eggplant rolls with walnuts.",
+      "price": "15.00"
     },
     {
-      "category": "starters",
-      "categoryKa": "საწყისი",
-      "name": "badrijani nigvzit",
-      "ka": "ბადრიჯანი ნიგვზით",
-      "text": "Fried aubergine rolled around walnut and garlic, served cold.",
-      "price": "13"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Cucumber & Tomato Salad",
+      "ka": "",
+      "text": "",
+      "price": "10.00"
     },
     {
-      "category": "starters",
-      "categoryKa": "საწყისი",
-      "name": "lobio in a clay pot",
-      "ka": "ლობიო",
-      "text": "Red beans stewed with coriander and blue fenugreek, with pickles.",
-      "price": "12"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Cucumber & Tomato Salad with Walnuts & Kakhetian Oil",
+      "ka": "",
+      "text": "",
+      "price": "15.00"
     },
     {
-      "category": "starters",
-      "categoryKa": "საწყისი",
-      "name": "sulguni, seared",
-      "ka": "სულგუნი",
-      "text": "Smoked mountain cheese, hot from the pan, with honey and thyme.",
-      "price": "14"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Pkhali Assortment",
+      "ka": "",
+      "text": "Georgian vegetable and walnut assortment.",
+      "price": "16.50"
     },
     {
-      "category": "starters",
-      "categoryKa": "საწყისი",
-      "name": "ajapsandali",
-      "ka": "აჯაფსანდალი",
-      "text": "Aubergine, pepper and tomato, cooked down slowly. Vegan.",
-      "price": "11"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Beetroot Salad with Raspberry Sauce & Cream Cheese",
+      "ka": "",
+      "text": "",
+      "price": "18.00"
     },
     {
-      "category": "salads",
-      "categoryKa": "სალათი",
-      "name": "tomato and cucumber, walnut",
-      "ka": "სალათი ნიგვზით",
-      "text": "The one that is on every table in Georgia, all summer.",
-      "price": "11"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Tomato Salad with Avocado & Green Adjika",
+      "ka": "",
+      "text": "",
+      "price": "16.00"
     },
     {
-      "category": "salads",
-      "categoryKa": "სალათი",
-      "name": "beetroot and pomegranate",
-      "ka": "ჭარხლის სალათი",
-      "text": "With sour cream, dill and toasted walnut.",
-      "price": "12"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Chicken Caesar Salad",
+      "ka": "",
+      "text": "",
+      "price": "19.00"
     },
     {
-      "category": "salads",
-      "categoryKa": "სალათი",
-      "name": "kuchmachi salad",
-      "ka": "კუჩმაჩი",
-      "text": "Warm chicken hearts and livers, onion, pomegranate, barberry.",
-      "price": "15"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Shrimp Caesar Salad",
+      "ka": "",
+      "text": "",
+      "price": "23.00"
     },
     {
-      "category": "salads",
-      "categoryKa": "სალათი",
-      "name": "shepherd's greens",
-      "ka": "მწვანილი",
-      "text": "Tarragon, coriander, spring onion and radish. Eaten by the handful.",
-      "price": "9"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Imeruli Cheese",
+      "ka": "",
+      "text": "",
+      "price": "8.00"
     },
     {
-      "category": "from the clay oven",
-      "categoryKa": "თონე",
-      "name": "khachapuri adjaruli",
-      "ka": "აჭარული ხაჭაპური",
-      "text": "The boat, with an egg and butter still moving in it. For two, or not.",
-      "price": "17"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Sulguni",
+      "ka": "",
+      "text": "",
+      "price": "10.00"
     },
     {
-      "category": "from the clay oven",
-      "categoryKa": "თონე",
-      "name": "khachapuri imeruli",
-      "ka": "იმერული ხაჭაპური",
-      "text": "The round one. Cheese inside, nothing on top.",
-      "price": "15"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Smoked Sulguni",
+      "ka": "",
+      "text": "",
+      "price": "12.00"
     },
     {
-      "category": "from the clay oven",
-      "categoryKa": "თონე",
-      "name": "lobiani",
-      "ka": "ლობიანი",
-      "text": "Bread baked around spiced beans. Vegan.",
-      "price": "14"
+      "category": "Cold dishes",
+      "categoryKa": "",
+      "name": "Georgian Cheese Board",
+      "ka": "",
+      "text": "",
+      "price": "20.00"
     },
     {
-      "category": "from the clay oven",
-      "categoryKa": "თონე",
-      "name": "shoti",
-      "ka": "შოთის პური",
-      "text": "A long blade of bread, slapped onto the oven wall. Order two.",
-      "price": "5"
+      "category": "Soups",
+      "categoryKa": "",
+      "name": "Chikhirtma",
+      "ka": "",
+      "text": "",
+      "price": "15.50"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "mtsvadi over vine wood",
-      "ka": "მწვადი",
-      "text": "Pork neck on a vine skewer, embers only, with onion and tkemali.",
-      "price": "26"
+      "category": "Soups",
+      "categoryKa": "",
+      "name": "Kharcho Soup with Walnuts",
+      "ka": "",
+      "text": "",
+      "price": "19.00"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "chicken shkmeruli",
-      "ka": "შქმერული",
-      "text": "Roasted and drowned in garlic milk. Bread is not optional.",
-      "price": "23"
+      "category": "Soups",
+      "categoryKa": "",
+      "name": "Kharcho Soup without Walnuts",
+      "ka": "",
+      "text": "",
+      "price": "17.00"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "chakhokhbili",
-      "ka": "ჩახოხბილი",
-      "text": "Chicken stewed with tomato and a great deal of coriander.",
-      "price": "22"
+      "category": "Soups",
+      "categoryKa": "",
+      "name": "Mushroom Cream Soup with Parmesan & Truffle Oil",
+      "ka": "",
+      "text": "",
+      "price": "15.50"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "khinkali, five",
-      "ka": "ხინკალი",
-      "text": "Hand-pleated, beef and pork. Hold the knot; do not eat it.",
-      "price": "15"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chkmeruli",
+      "ka": "",
+      "text": "Traditional Georgian chicken dish.",
+      "price": "18.50"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "kharcho",
-      "ka": "ხარჩო",
-      "text": "Beef, walnut and rice, sour with tkemali plum. A whole meal.",
-      "price": "20"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chicken Tabaka",
+      "ka": "",
+      "text": "",
+      "price": "18.50"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "lamb chanakhi",
-      "ka": "ჩანახი",
-      "text": "Lamb, aubergine and tomato, sealed in a clay pot and baked.",
-      "price": "27"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chicken Tabaka with Adjika",
+      "ka": "",
+      "text": "",
+      "price": "19.50"
     },
     {
-      "category": "main dishes",
-      "categoryKa": "ცხელი",
-      "name": "plov, Azerbaijani",
-      "ka": "ფლავი",
-      "text": "Saffron rice under a pastry crust, with lamb, chestnut and apricot.",
-      "price": "24"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chicken Tabaka in Blackberry Sauce",
+      "ka": "",
+      "text": "",
+      "price": "23.00"
     },
     {
-      "category": "sweet",
-      "categoryKa": "ტკბილი",
-      "name": "churchkhela",
-      "ka": "ჩურჩხელა",
-      "text": "Walnuts on a string, set in grape must. Cut at the table.",
-      "price": "7"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Ojakhuri with Pork",
+      "ka": "",
+      "text": "",
+      "price": "17.90"
     },
     {
-      "category": "sweet",
-      "categoryKa": "ტკბილი",
-      "name": "pelamushi",
-      "ka": "ფელამუში",
-      "text": "Grape must thickened to a set cream, with roasted walnut.",
-      "price": "8"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Ojakhuri with Veal",
+      "ka": "",
+      "text": "",
+      "price": "19.90"
     },
     {
-      "category": "sweet",
-      "categoryKa": "ტკბილი",
-      "name": "gozinaki",
-      "ka": "გოზინაყი",
-      "text": "Walnut in honey, cut into diamonds. Traditionally New Year only.",
-      "price": "7"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Ojakhuri with Chicken",
+      "ka": "",
+      "text": "",
+      "price": "16.90"
     },
     {
-      "category": "sweet",
-      "categoryKa": "ტკბილი",
-      "name": "honey cake",
-      "ka": "თაფლის ტორტი",
-      "text": "Nine thin layers and sour cream. Not Georgian, but always eaten here.",
-      "price": "9"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Ojakhuri with Mushrooms",
+      "ka": "",
+      "text": "",
+      "price": "15.90"
     },
     {
-      "category": "wine and the rest",
-      "categoryKa": "ღვინო",
-      "name": "saperavi, qvevri",
-      "ka": "საფერავი",
-      "text": "Deep red, fermented in buried clay. Glass — bottle 42.",
-      "price": "9"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Abkhazura with Caramelized Mash & Pomegranate Sauce",
+      "ka": "",
+      "text": "",
+      "price": "26.00"
     },
     {
-      "category": "wine and the rest",
-      "categoryKa": "ღვინო",
-      "name": "rkatsiteli, amber",
-      "ka": "რქაწითელი",
-      "text": "Skin-contact white, six months on the skins. Glass — bottle 38.",
-      "price": "8"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Braised Veal",
+      "ka": "",
+      "text": "",
+      "price": "17.50"
     },
     {
-      "category": "wine and the rest",
-      "categoryKa": "ღვინო",
-      "name": "chacha",
-      "ka": "ჭაჭა",
-      "text": "Grape spirit. One is hospitality, three is a conversation.",
-      "price": "6"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chicken Steak with Mushroom Sauce",
+      "ka": "",
+      "text": "",
+      "price": "17.00"
     },
     {
-      "category": "wine and the rest",
-      "categoryKa": "ღვინო",
-      "name": "tarkhuna",
-      "ka": "ტარხუნა",
-      "text": "Tarragon soda, alarmingly green, genuinely good.",
-      "price": "4"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Chef's Chicken Wings in Coca-Cola Sauce",
+      "ka": "",
+      "text": "",
+      "price": "20.00"
     },
     {
-      "category": "wine and the rest",
-      "categoryKa": "ღვინო",
-      "name": "borjomi",
-      "ka": "ბორჯომი",
-      "text": "Mineral water from the volcanic springs. An acquired taste.",
-      "price": "4"
+      "category": "Main courses",
+      "categoryKa": "",
+      "name": "Mixed Dolma",
+      "ka": "",
+      "text": "",
+      "price": "15.50"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Fries",
+      "ka": "",
+      "text": "",
+      "price": "6.00"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Mexican-Style Potatoes",
+      "ka": "",
+      "text": "",
+      "price": "8.50"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Family-Style Potatoes",
+      "ka": "",
+      "text": "",
+      "price": "9.50"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Mushrooms on Ketsi",
+      "ka": "",
+      "text": "",
+      "price": "14.00"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Mushrooms on Ketsi with Sulguni",
+      "ka": "",
+      "text": "",
+      "price": "16.00"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Lobio in a Clay Pot",
+      "ka": "",
+      "text": "Georgian bean dish served in a clay pot.",
+      "price": "15.50"
+    },
+    {
+      "category": "Vegetarian hot dishes",
+      "categoryKa": "",
+      "name": "Ajapsandali — Grilled Vegetables with Tomato & Cognac Sauce",
+      "ka": "",
+      "text": "",
+      "price": "16.50"
+    },
+    {
+      "category": "Fish & seafood",
+      "categoryKa": "",
+      "name": "Shrimps in Garlic & Cream Sauce",
+      "ka": "",
+      "text": "",
+      "price": "19.50"
+    },
+    {
+      "category": "Fish & seafood",
+      "categoryKa": "",
+      "name": "Breaded Trout Fillet with Vegetables & Pomegranate Sauce",
+      "ka": "",
+      "text": "",
+      "price": "20.50"
+    },
+    {
+      "category": "Fish & seafood",
+      "categoryKa": "",
+      "name": "Salmon Steak with Vegetables & Lemon Sauce",
+      "ka": "",
+      "text": "",
+      "price": "26.00"
+    },
+    {
+      "category": "Khinkali",
+      "categoryKa": "",
+      "name": "City-Style Khinkali (1 pc.)",
+      "ka": "",
+      "text": "Traditional Georgian dumpling; price per piece.",
+      "price": "2.50"
+    },
+    {
+      "category": "Khinkali",
+      "categoryKa": "",
+      "name": "Mini Khinkali with Caramelized Potato, Cognac & Tomato Sauce",
+      "ka": "",
+      "text": "",
+      "price": "15.00"
+    },
+    {
+      "category": "Khinkali",
+      "categoryKa": "",
+      "name": "Mini Khinkali with Cheese Sauce",
+      "ka": "",
+      "text": "",
+      "price": "16.00"
+    },
+    {
+      "category": "Khinkali",
+      "categoryKa": "",
+      "name": "Mini Khinkali with Demi-Glace & Pepper Sauce",
+      "ka": "",
+      "text": "",
+      "price": "19.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Imeruli Khachapuri",
+      "ka": "",
+      "text": "Georgian cheese-filled bread.",
+      "price": "16.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Megruli Khachapuri",
+      "ka": "",
+      "text": "Georgian cheese bread.",
+      "price": "19.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Royal Khachapuri",
+      "ka": "",
+      "text": "",
+      "price": "24.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Adjaruli Khachapuri",
+      "ka": "",
+      "text": "Boat-shaped Georgian cheese bread.",
+      "price": "17.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Lobiani",
+      "ka": "",
+      "text": "Georgian bean-filled bread.",
+      "price": "14.50"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Signature Lobiani",
+      "ka": "",
+      "text": "",
+      "price": "18.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Georgian Bread",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Signature khachapuri",
+      "categoryKa": "",
+      "name": "Mchadi (4 pcs.)",
+      "ka": "",
+      "text": "Traditional Georgian corn bread; four pieces.",
+      "price": "9.00"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Pork Skewers",
+      "ka": "",
+      "text": "Georgian-style grilled pork.",
+      "price": "17.90"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Chicken Skewers",
+      "ka": "",
+      "text": "",
+      "price": "15.90"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Grilled Veal Rib",
+      "ka": "",
+      "text": "",
+      "price": "19.00"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Grilled Lamb",
+      "ka": "",
+      "text": "",
+      "price": "21.00"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Grilled Vegetables",
+      "ka": "",
+      "text": "",
+      "price": "11.00"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Kebab",
+      "ka": "",
+      "text": "",
+      "price": "17.00"
+    },
+    {
+      "category": "Mangal grill",
+      "categoryKa": "",
+      "name": "Trout on the Grill",
+      "ka": "",
+      "text": "",
+      "price": "20.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Tkemali (Homemade)",
+      "ka": "",
+      "text": "Traditional Georgian plum sauce.",
+      "price": "3.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Ketchup",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Mayonnaise",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Tomato Sauce",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Demi-Glace & Pepper Sauce (Hot)",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Sauces",
+      "categoryKa": "",
+      "name": "Barbecue Sauce",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Honey Cake",
+      "ka": "",
+      "text": "",
+      "price": "9.00"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Cheesecake (Topping + €2.50)",
+      "ka": "",
+      "text": "",
+      "price": "9.00"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Vanilla Ice Cream",
+      "ka": "",
+      "text": "",
+      "price": "7.00"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Chocolate Ice Cream",
+      "ka": "",
+      "text": "",
+      "price": "7.50"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Fruit Ice Cream",
+      "ka": "",
+      "text": "",
+      "price": "8.00"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Traditional Georgian Pelamushi by the Chef",
+      "ka": "",
+      "text": "Grape juice, wine and caramelized nuts.",
+      "price": "18.50"
+    },
+    {
+      "category": "Desserts",
+      "categoryKa": "",
+      "name": "Celebration Cake (Pre-order)",
+      "ka": "",
+      "text": "Price on request; pre-order required.",
+      "price": ""
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Natakhtari Georgian Lemonade",
+      "ka": "",
+      "text": "",
+      "price": "3.50"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Coca-Cola",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Coca-Cola Zero",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Fanta",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Fanta Citron",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Fanta Zero",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Oasis",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Sprite",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Iced Tea",
+      "ka": "",
+      "text": "",
+      "price": "3.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Schweppes Agrumes",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Soft drinks",
+      "categoryKa": "",
+      "name": "Schweppes Mojito",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Fresh Juice (glass)",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Fresh Juice (1 litre)",
+      "ka": "",
+      "text": "",
+      "price": "13.00"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Spa Water (glass)",
+      "ka": "",
+      "text": "",
+      "price": "1.50"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Georgian Mineral Water Borjomi or Nabeghlavi (bottle)",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Still Water (bottle)",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Juices & water",
+      "categoryKa": "",
+      "name": "Sparkling Water (bottle)",
+      "ka": "",
+      "text": "",
+      "price": "6.00"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Espresso",
+      "ka": "",
+      "text": "",
+      "price": "3.50"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Double Espresso",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Espresso Macchiato",
+      "ka": "",
+      "text": "",
+      "price": "4.00"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Americano",
+      "ka": "",
+      "text": "",
+      "price": "4.50"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Flat White",
+      "ka": "",
+      "text": "",
+      "price": "4.50"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Cappuccino",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Latte",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Coffee",
+      "categoryKa": "",
+      "name": "Iced Latte",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Tea & compote",
+      "categoryKa": "",
+      "name": "Tea (cup)",
+      "ka": "",
+      "text": "",
+      "price": "4.50"
+    },
+    {
+      "category": "Tea & compote",
+      "categoryKa": "",
+      "name": "Georgian Loose-Leaf Tea (pot)",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Tea & compote",
+      "categoryKa": "",
+      "name": "Homemade Compote (glass)",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Tea & compote",
+      "categoryKa": "",
+      "name": "Homemade Compote (1 litre)",
+      "ka": "",
+      "text": "",
+      "price": "15.00"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Pirosmani",
+      "ka": "",
+      "text": "",
+      "price": "6.50 glass / 30.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Alazani Valley (Red)",
+      "ka": "",
+      "text": "",
+      "price": "6.80 glass / 34.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Chelti Mukuzani",
+      "ka": "",
+      "text": "",
+      "price": "9.50 glass / 45.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Kindzmarauli",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 35.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Chelti Kindzmarauli",
+      "ka": "",
+      "text": "",
+      "price": "9.50 glass / 45.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Saperavi",
+      "ka": "",
+      "text": "",
+      "price": "55.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Chelti Saperavi",
+      "ka": "",
+      "text": "",
+      "price": "70.00 bottle"
+    },
+    {
+      "category": "Red wine",
+      "categoryKa": "",
+      "name": "Côtes du Rhône",
+      "ka": "",
+      "text": "",
+      "price": "6.00 glass / 27.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Tsinandali",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 35.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Alazani Valley (White)",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 35.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Rkatsiteli",
+      "ka": "",
+      "text": "",
+      "price": "6.50 glass / 27.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Chelti Rkatsiteli",
+      "ka": "",
+      "text": "",
+      "price": "9.50 glass / 46.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Chelti Kisi",
+      "ka": "",
+      "text": "",
+      "price": "11.00 glass / 50.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Chardonnay",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 35.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Sauvignon Blanc",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 35.00 bottle"
+    },
+    {
+      "category": "White wine",
+      "categoryKa": "",
+      "name": "Chablis",
+      "ka": "",
+      "text": "",
+      "price": "11.00 glass / 50.00 bottle"
+    },
+    {
+      "category": "Rosé wine",
+      "categoryKa": "",
+      "name": "Coteaux Varois en Provence",
+      "ka": "",
+      "text": "",
+      "price": "7.50 glass / 35.00 bottle"
+    },
+    {
+      "category": "Rosé wine",
+      "categoryKa": "",
+      "name": "Chelti Rosé",
+      "ka": "",
+      "text": "",
+      "price": "7.50 glass / 35.00 bottle"
+    },
+    {
+      "category": "Cava & sparkling",
+      "categoryKa": "",
+      "name": "Cava",
+      "ka": "",
+      "text": "",
+      "price": "6.00 glass / 27.00 bottle"
+    },
+    {
+      "category": "Cava & sparkling",
+      "categoryKa": "",
+      "name": "Prosecco",
+      "ka": "",
+      "text": "",
+      "price": "6.50 glass / 30.00 bottle"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Stella Artois",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Duvel 666",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "La Chouffe",
+      "ka": "",
+      "text": "",
+      "price": "6.00"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Westmalle Dubbel",
+      "ka": "",
+      "text": "",
+      "price": "6.50"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Lindemans Kriek",
+      "ka": "",
+      "text": "",
+      "price": "6.00"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "ARGO Blue Lager",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Lindemans Kriek 0%",
+      "ka": "",
+      "text": "",
+      "price": "5.50"
+    },
+    {
+      "category": "Beer & cider",
+      "categoryKa": "",
+      "name": "Stella Artois 0%",
+      "ka": "",
+      "text": "",
+      "price": "5.00"
+    },
+    {
+      "category": "Vodka",
+      "categoryKa": "",
+      "name": "Absolut",
+      "ka": "",
+      "text": "",
+      "price": "4.50 glass / 70.00 bottle"
+    },
+    {
+      "category": "Vodka",
+      "categoryKa": "",
+      "name": "Absolut Vanilla",
+      "ka": "",
+      "text": "",
+      "price": "75.00 bottle"
+    },
+    {
+      "category": "Vodka",
+      "categoryKa": "",
+      "name": "Absolut Watermelon",
+      "ka": "",
+      "text": "",
+      "price": "75.00 bottle"
+    },
+    {
+      "category": "Vodka",
+      "categoryKa": "",
+      "name": "Grey Goose",
+      "ka": "",
+      "text": "",
+      "price": "105.00 bottle"
+    },
+    {
+      "category": "Chacha",
+      "categoryKa": "",
+      "name": "Chacha Oak (Gold)",
+      "ka": "",
+      "text": "Three serving prices in printed bar card; serving sizes to confirm.",
+      "price": "5.00 / 34.50 / 56.50"
+    },
+    {
+      "category": "Chacha",
+      "categoryKa": "",
+      "name": "Chacha Classic",
+      "ka": "",
+      "text": "Three serving prices in printed bar card; serving sizes to confirm.",
+      "price": "4.50 / 30.00 / 55.00"
+    },
+    {
+      "category": "Chacha",
+      "categoryKa": "",
+      "name": "Chacha Smoked",
+      "ka": "",
+      "text": "Three serving prices in printed bar card; serving sizes to confirm.",
+      "price": "5.50 / 35.00 / 60.00"
+    },
+    {
+      "category": "Whisky",
+      "categoryKa": "",
+      "name": "Jameson",
+      "ka": "",
+      "text": "",
+      "price": "7.00 glass / 65.00 bottle"
+    },
+    {
+      "category": "Brandy",
+      "categoryKa": "",
+      "name": "Sarajishvili 5 Star",
+      "ka": "",
+      "text": "",
+      "price": "10.00 glass / 40.00 bottle"
+    },
+    {
+      "category": "Brandy",
+      "categoryKa": "",
+      "name": "Sarajishvili VSOP Black",
+      "ka": "",
+      "text": "",
+      "price": "125.00 bottle"
     }
   ],
   "kitchen": [
     {
       "side": "fire",
-      "latin": "mtsvadi",
-      "ka": "მწვადი",
-      "icon": "skewer",
-      "text": "Meat on a vine-wood skewer over embers, never over flame. The vine is not a flourish — it is what is left after the pruning."
+      "latin": "Eggplant with Walnuts",
+      "ka": "ბადრიჯანი ნიგვზით",
+      "icon": "walnut",
+      "text": "A Georgian favourite made with eggplant and walnuts."
     },
     {
       "side": "fire",
-      "latin": "khachapuri",
+      "latin": "Khachapuri",
       "ka": "ხაჭაპური",
       "icon": "bread",
-      "text": "Cheese bread, slapped onto the wall of a clay oven. In Adjara it arrives as a boat, with an egg still moving in it."
+      "text": "Georgian cheese-filled bread. Explore our Imeruli, Megruli and Adjaruli versions."
     },
     {
-      "side": "fire",
-      "latin": "khinkali",
+      "side": "table",
+      "latin": "Khinkali",
       "ka": "ხინკალი",
       "icon": "dumpling",
-      "text": "Soup dumplings pleated by hand. You hold the knot, you do not eat it, and you count them on the table when you are finished."
+      "text": "Traditional Georgian dumplings, including classic and mini-khinkali options."
     },
     {
       "side": "table",
-      "latin": "pkhali",
-      "ka": "ფხალი",
-      "icon": "walnut",
-      "text": "Herbs, greens and walnut, pounded and set in the palm. Spinach, beet, nettle — whatever the season is actually doing."
-    },
-    {
-      "side": "table",
-      "latin": "qvevri",
-      "ka": "ქვევრი",
-      "icon": "qvevri",
-      "text": "Wine fermented in a clay egg buried to the neck in the floor. Georgia has done this for eight thousand years; UNESCO wrote it down in 2013."
-    },
-    {
-      "side": "table",
-      "latin": "churchkhela",
-      "ka": "ჩურჩხელა",
-      "icon": "churchkhela",
-      "text": "Walnuts threaded on string, dipped in grape must until they set. It hangs to dry like a candle and keeps all winter."
+      "latin": "Chkmeruli",
+      "ka": "ჩქმერული",
+      "icon": "skewer",
+      "text": "A Georgian chicken dish, served as one of KERA’s signature mains."
     }
   ],
   "rooms": [
     {
-      "name": "the first hall",
-      "meta": "dining",
-      "text": "The long room. Tables that push together when a party arrives and does not shrink to fit the booking.",
-      "image": "",
-      "imageAlt": ""
+      "name": "Restaurant",
+      "meta": "Indoor dining",
+      "text": "A warm and welcoming setting for lunch, dinner and time with family or friends.",
+      "image": "main-room",
+      "imageAlt": "The dining room at KERA: a cream panelled bar counter and high stools on a light wooden floor."
     },
     {
-      "name": "the second hall",
-      "meta": "dining",
-      "text": "Quieter, lower, further from the door. For the dinners that are meant to last four hours.",
-      "image": "",
-      "imageAlt": ""
+      "name": "Private Dining",
+      "meta": "Private room",
+      "text": "A comfortable, more intimate setting for dining with family, friends or a small group. Contact us to ask about availability.",
+      "image": "private-room",
+      "imageAlt": "The private dining room at KERA, glass-walled, with one long table in front of a brick wall."
     },
     {
-      "name": "the private room",
-      "meta": "by arrangement",
-      "text": "A door that closes. For the birthdays, the deals, and the toasts that need no audience.",
-      "image": "",
-      "imageAlt": ""
-    },
-    {
-      "name": "the terrace",
-      "meta": "outside",
-      "text": "Open sky, Brussels weather, and the stubborn Georgian belief that a table outside is still a table.",
-      "image": "",
-      "imageAlt": ""
-    },
-    {
-      "name": "the veranda",
-      "meta": "in between",
-      "text": "Glazed and warm when the terrace is not. The room you end up in without meaning to.",
-      "image": "",
-      "imageAlt": ""
-    }
-  ],
-  "progress": [
-    {
-      "name": "the room, found",
-      "status": "done",
-      "label": "done",
-      "text": "Rue Saint-Quentin. Keys in hand, floors bare, everything still to do."
-    },
-    {
-      "name": "building, painting, decorating",
-      "status": "now",
-      "label": "we are here",
-      "text": "Where we are today. Walls, wiring, plaster, paint, and a hundred decisions a week about things nobody will ever notice — which is exactly why they matter."
-    },
-    {
-      "name": "the first fire",
-      "status": "next",
-      "label": "next",
-      "text": "The kitchen goes in and gets lit. The first bread comes out. Nobody is invited; everybody hears about it."
-    },
-    {
-      "name": "the doors open",
-      "status": "next",
-      "label": "and then",
-      "text": "Autumn 2026."
+      "name": "Terrace",
+      "meta": "Outdoor dining",
+      "text": "Enjoy Georgian cuisine and drinks outdoors on our terrace, weather and availability permitting.",
+      "image": "terrace",
+      "imageAlt": "The terrace at KERA: dark tables and high chairs on grass beside a white brick wall."
     }
   ],
   "words": [
@@ -443,7 +1248,7 @@
     {
       "ka": "ღვინო",
       "latin": "ghvino",
-      "gloss": "wine, eight thousand years of it"
+      "gloss": "wine"
     },
     {
       "ka": "პური",
@@ -458,7 +1263,7 @@
     {
       "ka": "გაუმარჯოს",
       "latin": "gaumarjos",
-      "gloss": "to your victory — the toast"
+      "gloss": "cheers — a Georgian toast"
     },
     {
       "ka": "კერა",
@@ -468,24 +1273,24 @@
   ],
   "images": {
     "hero": {
-      "file": "ridge.jpg",
+      "file": "ridge",
       "alt": "A stone church on a green ridge below the snow line of the Caucasus, Georgia."
     },
     "story": {
-      "file": "village.jpg",
-      "alt": "A Svaneti village of stone defence towers under snow peaks, Georgia."
+      "file": "georgian-table",
+      "alt": "A Georgian table laid with khachapuri, small plates and sauces on a carved wooden table."
     },
     "kitchen": {
-      "file": "bread.jpg",
-      "alt": "A Georgian supra: khachapuri, walnut pastes, cheese, grapes and wine crowded edge to edge on a wooden table."
+      "file": "kitchen-pan",
+      "alt": "A cast-iron pan of roasted meat, potatoes and tomatoes scattered with fresh herbs."
     },
     "close": {
-      "file": "table.jpg",
-      "alt": "A Georgian table laid at golden hour above a valley, a mountain church on the ridge behind it."
+      "file": "wine-pour",
+      "alt": "Red wine poured into a glass beside a grilled skewer."
     },
     "og": {
       "file": "og.jpg",
-      "alt": "KERA — a Georgian hearth in Brussels"
+      "alt": "KERA — Georgian Restaurant in Brussels"
     }
   }
 }

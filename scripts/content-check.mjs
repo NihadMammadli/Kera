@@ -11,6 +11,8 @@ import path from 'node:path';
 import { TEXT_FIELDS, SHEETS, IMAGES } from '../content/registry.mjs';
 
 const IMG_DIR = 'public/img';
+/* written by `npm run images`: every picture name the site can show */
+const MANIFEST = fs.existsSync('content/images.json') ? JSON.parse(fs.readFileSync('content/images.json', 'utf8')) : {};
 const GEORGIAN = /[Ⴀ-ჿᲐ-Ჿ]/;
 const errors = [];
 const warnings = [];
@@ -102,29 +104,23 @@ for (const sheet of SHEETS) {
   });
 }
 
-/* the gold line on the progress bar stops at "now", so there must be one */
-const nows = (data.progress ?? []).filter((s) => String(s.status).trim() === 'now');
-if (nows.length === 0) warn('Progress', 'no row is marked "now", so the gold line will not be drawn.');
-if (nows.length > 1) err('Progress', `${nows.length} rows are marked "now". Exactly one should be.`);
-
 /* menus need at least one category with one dish */
 const menu = data.menu ?? [];
 const cats = new Set(menu.map((r) => String(r.category ?? '').trim()).filter(Boolean));
 if (cats.size === 0) err('Menu', 'has no categories, so the menu section will be blank.');
 
 /* ----------------------------------------------------------------- images */
-function checkImage(where, what, fileName, alt, wantWebp = true) {
-  const onDisk = path.join(IMG_DIR, fileName);
-  if (!fs.existsSync(onDisk)) {
-    err(where, `${what} names "${fileName}", but there is no such file in ${IMG_DIR}/.`);
+function checkImage(where, what, name, alt) {
+  const entry = MANIFEST[name];
+  if (!entry) {
+    const known = Object.keys(MANIFEST).join(', ');
+    err(where, `${what} names "${name}", but there is no picture by that name. The pictures are: ${known}.`);
     return;
   }
+  const missing = entry.widths.map((w) => `${name}-${w}.webp`).filter((f) => !fs.existsSync(path.join(IMG_DIR, f)));
+  if (missing.length) err(where, `${what} "${name}" is missing ${missing.join(', ')} — run "npm run images".`);
   if (!String(alt ?? '').trim()) {
     warn(where, `${what} has a picture but no description. Blind visitors and Google both read that description.`);
-  }
-  const webp = onDisk.replace(/\.(jpe?g|png)$/i, '.webp');
-  if (wantWebp && webp !== onDisk && !fs.existsSync(webp)) {
-    warn(where, `no ${path.basename(webp)} beside it — the page will serve the larger file to everyone.`);
   }
 }
 
@@ -136,7 +132,11 @@ for (const slot of IMAGES) {
     continue;
   }
   /* the share preview is only ever read by other websites, which want a jpg */
-  checkImage(where, 'the file name', String(pic.file).trim(), pic.alt, slot.key !== 'og');
+  if (slot.key === 'og') {
+    if (!fs.existsSync(path.join(IMG_DIR, String(pic.file).trim()))) err(where, `names "${pic.file}", but there is no such file in ${IMG_DIR}/.`);
+    continue;
+  }
+  checkImage(where, 'the picture', String(pic.file).trim(), pic.alt);
 }
 
 /* ----------------------------------------------------------------- report */

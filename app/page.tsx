@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Band } from '@/components/Band';
 import { Foot } from '@/components/Foot';
 import { Hero } from '@/components/Hero';
@@ -9,21 +10,55 @@ import { NameSection } from '@/components/NameSection';
 import { Nav } from '@/components/Nav';
 import { Rooms } from '@/components/Rooms';
 import { Visit } from '@/components/Visit';
-import { Work } from '@/components/Work';
+import { content, t, openingHours, picture } from '@/content';
+import { asset, PAGE_URL, SITE_URL } from '@/lib/paths';
+
+export const metadata: Metadata = {
+  title: t('seo.title'),
+  description: t('seo.description'),
+  alternates: { canonical: PAGE_URL },
+  openGraph: { url: PAGE_URL, title: t('seo.title'), description: t('seo.description') },
+};
+
+/** Structured data, limited to what is actually true: no rating, no price band. */
+function restaurantJsonLd() {
+  const og = picture('og');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    name: t('brand.name'),
+    description: t('seo.description'),
+    url: PAGE_URL,
+    servesCuisine: ['Georgian', 'Azerbaijani'],
+    hasMenu: `${PAGE_URL}#menu`,
+    ...(content.phone && { telephone: content.phone, acceptsReservations: true }),
+    ...(t('contact.email') && { email: t('contact.email') }),
+    ...(og && { image: `${SITE_URL}${asset(`/img/${og.file}`)}` }),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: t('address.street'),
+      addressLocality: t('address.city'),
+      addressCountry: 'BE',
+    },
+    openingHoursSpecification: openingHours().map((h) => ({ '@type': 'OpeningHoursSpecification', ...h })),
+    sameAs: [content.instagramUrl],
+    hasMap: content.mapsUrl,
+  };
+}
 
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd()) }} />
       <ArchDefs />
       <Nav />
-      <main>
+      <main id="main">
         <Hero />
         <Band />
         <NameSection />
         <Kitchen />
-        <Rooms />
         <Menu />
-        <Work />
+        <Rooms />
         <Visit />
       </main>
       <Foot />

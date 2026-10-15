@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { content, t } from '@/content';
-import { Instagram } from './Icons';
+import { Instagram, Phone } from './Icons';
 
 export function Nav() {
   const [lifted, setLifted] = useState(false);
@@ -19,7 +19,7 @@ export function Nav() {
   /* the nav says where you are, which is the whole point of an anchored page */
   useEffect(() => {
     const targets = content.nav
-      .map((n) => document.querySelector(n.href))
+      .map((n) => document.querySelector(n.hash))
       .filter((el): el is Element => Boolean(el));
     if (!targets.length) return;
     const io = new IntersectionObserver(
@@ -57,12 +57,8 @@ export function Nav() {
         <nav aria-label={t('a11y.navSections')}>
           <ul className="nav__links">
             {content.nav.map((item) => (
-              <li key={item.href}>
-                <a
-                  className="nav__link"
-                  href={item.href}
-                  aria-current={active === item.href ? 'true' : undefined}
-                >
+              <li key={item.key}>
+                <a className="nav__link" href={item.hash} aria-current={active === item.hash ? 'true' : undefined}>
                   {item.label}
                 </a>
               </li>
@@ -70,38 +66,48 @@ export function Nav() {
           </ul>
         </nav>
 
-        <a className="gilt" href={content.instagramUrl} target="_blank" rel="noreferrer noopener">
-          <Instagram />
-          {t('visit.followLabel')}
-        </a>
+        {content.tel && (
+          <a className="gilt nav__book" href={content.tel}>
+            <Phone />
+            {t('nav.book')}
+          </a>
+        )}
 
-        <button
-          className="nav__burger"
-          type="button"
-          aria-expanded={open}
-          aria-controls="kera-menu"
-          aria-label={open ? t('a11y.menuClose') : t('a11y.menuOpen')}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div className="nav__phone">
+          {content.tel && (
+            <a className="nav__call" href={content.tel} aria-label={`${t('nav.book')} — ${content.phone}`}>
+              <Phone />
+            </a>
+          )}
+          <button
+            className="nav__burger"
+            type="button"
+            aria-expanded={open}
+            aria-controls="kera-menu"
+            aria-label={open ? t('a11y.menuClose') : t('a11y.menuOpen')}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </header>
 
       <div className="sheet" id="kera-menu" data-open={open} inert={!open ? true : undefined}>
         {content.nav.map((item) => (
-          <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+          <a key={item.key} href={item.hash} onClick={() => setOpen(false)}>
             {item.label}
           </a>
         ))}
-        <a
-          href={content.instagramUrl}
-          target="_blank"
-          rel="noreferrer noopener"
-          onClick={() => setOpen(false)}
-        >
-          @{content.instagram}
+        {content.tel && (
+          <a className="sheet__book" href={content.tel} onClick={() => setOpen(false)}>
+            <Phone />
+            {t('nav.book')}
+          </a>
+        )}
+        <a href={content.instagramUrl} target="_blank" rel="noreferrer noopener" onClick={() => setOpen(false)}>
+          <Instagram />@{content.instagram}
         </a>
       </div>
     </>

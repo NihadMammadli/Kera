@@ -14,7 +14,7 @@ const raw = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 export const BASE_PATH = raw === '/' ? '' : raw.replace(/\/+$/, '');
 
 /** Absolute origin, no path. og:image and JSON-LD add the base path to it. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kera.brussels').replace(/\/+$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.kera.brussels').replace(/\/+$/, '');
 
 /** The page itself — the origin is not the site when the site lives under a sub-path. */
 export const PAGE_URL = `${SITE_URL}${BASE_PATH}/`;

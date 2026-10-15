@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Marcellus, Alegreya_Sans, Noto_Serif_Georgian } from 'next/font/google';
-import { content, t, picture } from '@/content';
-import { asset, PAGE_URL, SITE_URL } from '@/lib/paths';
+import { t, picture } from '@/content';
+import { asset, SITE_URL } from '@/lib/paths';
 import './globals.css';
 
 const display = Marcellus({
@@ -24,54 +24,30 @@ const georgian = Noto_Serif_Georgian({
   variable: '--font-georgian',
 });
 
-const description = t('seo.description');
 const og = picture('og');
 const ogImage = og ? asset(`/img/${og.file}`) : undefined;
 
+/* What every page shares. Each page sets its own title, description and
+   canonical; the share card and site name come from here. */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: t('seo.title'),
-  description,
-  keywords: t('seo.keywords').split(',').map((k) => k.trim()).filter(Boolean),
+  description: t('seo.description'),
   openGraph: {
     type: 'website',
-    title: `${t('brand.name')} — ${t('brand.tagline')}`,
-    description,
     siteName: t('brand.name'),
     locale: 'en_GB',
     images: og && ogImage ? [{ url: ogImage, width: 1200, height: 630, alt: og.alt }] : undefined,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${t('brand.name')} — ${t('brand.tagline')}`,
-    description,
     images: ogImage ? [ogImage] : undefined,
   },
-  alternates: { canonical: PAGE_URL },
 };
 
 export const viewport: Viewport = {
   themeColor: '#0f1a2e',
   colorScheme: 'dark',
-};
-
-/** Structured data, limited to what is actually true. No hours, no phone. */
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Restaurant',
-  name: t('brand.name'),
-  description,
-  servesCuisine: ['Georgian', 'Azerbaijani', 'Caucasian'],
-  url: PAGE_URL,
-  image: ogImage ? `${SITE_URL}${ogImage}` : undefined,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: t('address.street'),
-    addressLocality: t('address.city'),
-    addressCountry: 'BE',
-  },
-  sameAs: [content.instagramUrl],
-  hasMap: content.mapsUrl,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -83,7 +59,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: no-preference)').matches)return;d.classList.add('motion');setTimeout(function(){if(d.dataset.fired!=='true')d.classList.remove('motion')},3000)}catch(e){}})()`,
           }}
         />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
         {/* The direction contract. React drops JSX comments at build time, so it
@@ -114,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.\n-->`,
           }}
         />
-        <a className="skip" href="#name">
+        <a className="skip" href="#main">
           {t('a11y.skip')}
         </a>
         {children}

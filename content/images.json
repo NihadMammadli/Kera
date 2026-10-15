@@ -1,0 +1,63 @@
+{
+  "ridge": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1200,
+    "height": 1778
+  },
+  "georgian-table": {
+    "widths": [
+      480,
+      544
+    ],
+    "width": 544,
+    "height": 800
+  },
+  "kitchen-pan": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1200,
+    "height": 1538
+  },
+  "main-room": {
+    "widths": [
+      480,
+      800,
+      1024
+    ],
+    "width": 1024,
+    "height": 1365
+  },
+  "private-room": {
+    "widths": [
+      480,
+      800,
+      1031
+    ],
+    "width": 1031,
+    "height": 1375
+  },
+  "terrace": {
+    "widths": [
+      480,
+      800,
+      1024
+    ],
+    "width": 1024,
+    "height": 1365
+  },
+  "wine-pour": {
+    "widths": [
+      480,
+      700
+    ],
+    "width": 700,
+    "height": 980
+  }
+}

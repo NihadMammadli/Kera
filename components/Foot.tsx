@@ -10,8 +10,8 @@ export function Foot() {
           <p className="foot__mark">{t('brand.name')}</p>
           <ul className="foot__nav">
             {content.nav.map((n) => (
-              <li key={n.href}>
-                <a href={n.href}>{n.label}</a>
+              <li key={n.key}>
+                <a href={n.hash}>{n.label}</a>
               </li>
             ))}
             <li>
@@ -24,8 +24,13 @@ export function Foot() {
 
         <div className="foot__base">
           <p style={{ margin: 0 }}>
-            {t('footer.credit')} · {t('address.street')}, {t('address.city')} ·{' '}
-            {t('hero.openingLabel')} {t('opening.value')}
+            {t('footer.credit')} · {t('address.street')}, {t('address.city')}
+            {content.tel && (
+              <>
+                {' · '}
+                <a href={content.tel}>{content.phone}</a>
+              </>
+            )}
           </p>
           <div className="foot__social">
             <span className="ka" style={{ color: 'var(--chalk-3)' }}>
