@@ -193,8 +193,30 @@ Notes on the current set:
 - `wine-pour` is cut from the top of `wine.kera.jpg` on purpose: the wrapping
   paper and cloth below carry another restaurant's printed branding.
 
-`public/img/og.jpg` is the social preview card: 1200 × 630 JPEG, because some
-apps still do not show WebP previews.
+### The logo, the share card and the icons
+
+The client's logo arrived as a Canva PDF (`docs/KERA LOGO (1).pdf`, ignored):
+a raster jug on an off-white box, on a white page. Everything below was cut
+from it, so it needs redoing only if the logo changes.
+
+- **`public/img/og-logo.jpg`** — the card WhatsApp, iMessage, Facebook and LinkedIn
+  show when the link is sent: the logo on warm cream with the address beneath,
+  1200 × 630 JPEG (some apps still ignore WebP). Everything sits in the middle,
+  so apps that crop to a square still show the whole logo.
+- **`app/icon.png`** and **`app/apple-icon.png`** — the jug alone on the
+  wordmark's burgundy (tan on cream vanishes at 16px). Next.js links them.
+- **`public/img/logo.png`** — the full logo, transparent, for the `logo` in the
+  structured data.
+
+How: `pdftocairo -png -transp -r 144` renders the page; everything near white
+(least channel ≥ 250, ramped to 226) goes transparent, which removes the box
+behind the jug and lets the flame show the background through; the jug alone
+is the connected shape around its body, leaving the vines behind.
+
+Messaging apps cache a link's card. After changing it, re-scrape with
+Facebook's Sharing Debugger (WhatsApp shares that cache), or send the link
+with a throwaway query (`?v=2`) to see the new one. Give a new card a new file
+name, too: pictures are cached for a month under the old one.
 
 ## Design
 

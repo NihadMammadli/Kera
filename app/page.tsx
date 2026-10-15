@@ -60,6 +60,7 @@ function restaurantJsonLd() {
     ...(content.book && { acceptsReservations: t('contact.bookingUrl') || true }),
     ...(t('contact.email') && { email: t('contact.email') }),
     ...(ogImage && { image: ogImage.url }),
+    logo: `${SITE_URL}${asset('/img/logo.png')}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: t('address.street'),

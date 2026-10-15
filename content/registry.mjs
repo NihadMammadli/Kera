@@ -159,7 +159,7 @@ export const IMAGES = [
   { key: 'story', where: 'Beside About Us', help: 'Standing up.' },
   { key: 'kitchen', where: 'Between the two lists of dishes', help: 'Standing up. Food works best here.' },
   { key: 'close', where: 'At the very bottom, behind "Welcome home"', help: 'Standing up.' },
-  { key: 'og', where: 'The preview when the site is shared', help: 'og.jpg — lying down, exactly 1200 × 630. Shown in WhatsApp, Instagram and Facebook.' },
+  { key: 'og', where: 'The preview when the site is shared', help: 'og-logo.jpg — lying down, exactly 1200 × 630. Shown in WhatsApp, Instagram and Facebook.' },
 ];
 
 /* each field carries the group it sits under, so an error can say which

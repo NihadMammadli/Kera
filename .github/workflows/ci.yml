@@ -37,5 +37,8 @@ jobs:
           # built exactly as the deploy builds it
           NEXT_PUBLIC_SITE_URL: https://www.kera.brussels
 
-      - name: Check the export actually produced a page
-        run: test -s out/index.html && test -s out/img/og.jpg
+      - name: Check the export produced a page and its share card
+        run: |
+          test -s out/index.html
+          card=$(grep -o 'property="og:image" content="[^"]*' out/index.html | sed 's#.*/img/#out/img/#')
+          test -n "$card" && test -s "$card" || { echo "::error::og:image is missing or names a file that is not in out/img/"; exit 1; }
