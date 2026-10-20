@@ -518,6 +518,19 @@ button { font: inherit; color: inherit; }
 
 .nav__call svg { width: 1.1rem; height: 1.1rem; }
 
+/* While the section links show, they sit on the page's centre line: the
+   name and the contact take equal columns either side, and the wider side
+   only takes more than its half when it has to. */
+@media (min-width: 1240px) {
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: clamp(2rem, 3vw, 3.5rem);
+  }
+  .nav__mark { justify-self: start; }
+  .nav__end { justify-self: end; }
+}
+
 /* the section links stop fitting beside the contact and the button */
 @media (max-width: 1239px) {
   .nav__sections { display: none; }
