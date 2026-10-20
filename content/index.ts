@@ -54,6 +54,7 @@ function groupMenu(): MenuCategory[] {
 
 const handle = t('contact.instagram').replace(/^@/, '');
 const phone = t('contact.phone');
+const email = t('contact.email');
 
 export const content = {
   text: data.text,
@@ -80,6 +81,8 @@ export const content = {
   phone,
   /* "+32 470 15 51 08" → "tel:+32470155108" */
   tel: phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : '',
+  email,
+  mailto: email ? `mailto:${email}` : '',
   /* every "Book a table" opens the booking page, in a new tab; with no
      booking page it falls back to calling */
   book: t('contact.bookingUrl')

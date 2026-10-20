@@ -1,5 +1,5 @@
 import { content, t } from '@/content';
-import { Braid, Instagram } from './Icons';
+import { Braid, Calendar, Envelope, Instagram, Phone } from './Icons';
 import { withHandleText } from './Rich';
 
 export function Foot() {
@@ -7,7 +7,29 @@ export function Foot() {
     <footer className="foot">
       <div className="shell">
         <div className="foot__top">
-          <p className="foot__mark">{t('brand.name')}</p>
+          <div>
+            <p className="foot__mark">{t('brand.name')}</p>
+            <div className="foot__contact">
+              {content.book && (
+                <a className="gilt foot__book" {...content.book}>
+                  <Calendar />
+                  {t('nav.book')}
+                </a>
+              )}
+              {content.tel && (
+                <a href={content.tel}>
+                  <Phone />
+                  {content.phone}
+                </a>
+              )}
+              {content.mailto && (
+                <a href={content.mailto}>
+                  <Envelope />
+                  {content.email}
+                </a>
+              )}
+            </div>
+          </div>
           <ul className="foot__nav">
             {content.nav.map((n) => (
               <li key={n.key}>
@@ -25,12 +47,6 @@ export function Foot() {
         <div className="foot__base">
           <p style={{ margin: 0 }}>
             {t('footer.credit')} · {t('address.street')}, {t('address.city')}
-            {content.tel && (
-              <>
-                {' · '}
-                <a href={content.tel}>{content.phone}</a>
-              </>
-            )}
           </p>
           <div className="foot__social">
             <span className="ka" style={{ color: 'var(--chalk-3)' }}>

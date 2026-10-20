@@ -452,24 +452,65 @@ button { font: inherit; color: inherit; }
 .sheet a[aria-current='page'] { color: var(--chalk-2); }
 .sheet a svg { width: 1.1em; height: 1.1em; margin-right: 0.6em; vertical-align: -0.2em; }
 
-/* the Instagram handle reads as a footnote to the sections above it */
+/* the phone, the email and Instagram read as a footnote to the sections */
 .sheet .sheet__social {
-  margin-top: 0.75rem;
+  border-bottom: 0;
+  padding-block: 0.5rem;
   font-family: var(--sans);
-  font-size: var(--step-0s);
-  letter-spacing: 0.06em;
-  color: var(--chalk-2);
+  font-size: var(--step-1);
+  letter-spacing: 0.02em;
+  color: var(--chalk);
 }
 
-/* the phone and the burger, side by side, once the links fold away */
-.nav__phone { display: none; align-items: center; gap: 0.6rem; }
+.sheet a:not(.sheet__social) + .sheet__social { margin-top: 0.75rem; }
 
+/* a phone on its side */
+@media (max-height: 540px) {
+  .sheet { padding-block: 5rem 1.5rem; gap: 0; }
+  .sheet a { font-size: 1.3rem; padding-block: 0.45rem; }
+  .sheet .sheet__social { padding-block: 0.25rem; }
+}
+
+/* the way to reach KERA, at the right of the bar: phone over email, then
+   the gilt button, then the burger once the links fold away */
+.nav__end { display: flex; flex: none; align-items: center; gap: 1.5rem; }
+
+.nav__contact { display: grid; gap: 0.1rem; list-style: none; margin: 0; padding: 0; }
+
+.nav__contact a {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  font-size: var(--step-0);
+  line-height: 1.3;
+  color: var(--chalk);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.35s var(--ease);
+}
+
+.nav__contact a:hover,
+.nav__contact a:focus-visible { color: var(--gilt); }
+.nav__contact svg { width: 1.05em; height: 1.05em; flex: none; }
+
+/* a size up from the other buttons: booking is the page's one action */
+.nav__book,
+.foot__book { font-size: 0.9375rem; line-height: 1.2; }
+.foot__book { font-size: 1rem; }
+
+/* on a phone, the phone, email and booking become round buttons */
 .nav__call {
-  display: grid;
+  display: none;
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
+  border: 1px solid var(--rule-strong);
   border-radius: 999px;
+  color: var(--chalk);
+}
+
+.nav__call--book {
+  border: 0;
   background: linear-gradient(160deg, var(--gilt-hi), var(--gilt) 46%, var(--gilt-deep) 100%);
   color: var(--plaster-deep);
   box-shadow: 0 6px 18px -8px rgb(var(--cast) / 0.72);
@@ -477,20 +518,26 @@ button { font: inherit; color: inherit; }
 
 .nav__call svg { width: 1.1rem; height: 1.1rem; }
 
-/* a phone on its side */
-@media (max-height: 540px) {
-  .sheet { padding-block: 5rem 1.5rem; gap: 0; }
-  .sheet a { font-size: 1.3rem; padding-block: 0.45rem; }
+/* the section links stop fitting beside the contact and the button */
+@media (max-width: 1239px) {
+  .nav__sections { display: none; }
+  .nav__burger { display: flex; flex-direction: column; }
+  .nav__end { gap: 1.25rem; }
 }
 
-/* the links and the gilt button stop fitting side by side below ~1010px */
-.nav__book { flex: none; }
-
-@media (max-width: 1023px) {
-  .nav__links { display: none; }
-  .nav__burger { display: flex; flex-direction: column; }
+@media (max-width: 719px) {
+  .nav__contact,
   .nav__book { display: none; }
-  .nav__phone { display: flex; }
+  .nav__call { display: grid; }
+  .nav__end { gap: 0.5rem; }
+}
+
+/* four round buttons and the name, on the narrowest phones */
+@media (max-width: 359px) {
+  .nav__mark { font-size: 1.2rem; }
+  .nav__call,
+  .nav__burger { width: 2.4rem; height: 2.4rem; }
+  .nav__end { gap: 0.4rem; }
 }
 
 .skip {
@@ -1264,6 +1311,27 @@ button { font: inherit; color: inherit; }
   margin: 0;
   color: color-mix(in srgb, var(--chalk) 22%, transparent);
 }
+
+.foot__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: clamp(1.5rem, 4vh, 2.25rem);
+}
+
+.foot__contact a:not(.gilt) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--step-1);
+  color: var(--chalk);
+  text-decoration: none;
+  transition: color 0.35s var(--ease);
+}
+
+.foot__contact a:not(.gilt):hover { color: var(--gilt); }
+.foot__contact a:not(.gilt) svg { width: 1.05em; height: 1.05em; flex: none; }
 
 .foot__nav { display: grid; justify-items: end; list-style: none; margin: 0; padding: 0; }
 .foot__nav a { display: inline-block; padding-block: 0.3rem; font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; color: var(--chalk-2); text-decoration: none; }

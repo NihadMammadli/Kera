@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { content, t } from '@/content';
-import { Calendar, Instagram } from './Icons';
+import { Calendar, Envelope, Instagram, Phone } from './Icons';
 
 export function Nav() {
   const [lifted, setLifted] = useState(false);
@@ -61,7 +61,7 @@ export function Nav() {
           {t('brand.name')}
         </a>
 
-        <nav aria-label={t('a11y.navSections')}>
+        <nav className="nav__sections" aria-label={t('a11y.navSections')}>
           <ul className="nav__links">
             {content.nav.map((item) => (
               <li key={item.key}>
@@ -73,16 +73,48 @@ export function Nav() {
           </ul>
         </nav>
 
-        {content.book && (
-          <a className="gilt nav__book" {...content.book}>
-            <Calendar />
-            {t('nav.book')}
-          </a>
-        )}
+        <div className="nav__end">
+          {(content.tel || content.mailto) && (
+            <ul className="nav__contact">
+              {content.tel && (
+                <li>
+                  <a href={content.tel}>
+                    <Phone />
+                    {content.phone}
+                  </a>
+                </li>
+              )}
+              {content.mailto && (
+                <li>
+                  <a href={content.mailto}>
+                    <Envelope />
+                    {content.email}
+                  </a>
+                </li>
+              )}
+            </ul>
+          )}
 
-        <div className="nav__phone">
           {content.book && (
-            <a className="nav__call" {...content.book} aria-label={t('nav.book')}>
+            <a className="gilt nav__book" {...content.book}>
+              <Calendar />
+              {t('nav.book')}
+            </a>
+          )}
+
+          {/* on a phone the same three fold into round buttons */}
+          {content.tel && (
+            <a className="nav__call" href={content.tel} aria-label={`${t('visit.label.phone')} ${content.phone}`}>
+              <Phone />
+            </a>
+          )}
+          {content.mailto && (
+            <a className="nav__call" href={content.mailto} aria-label={`${t('visit.label.email')} ${content.email}`}>
+              <Envelope />
+            </a>
+          )}
+          {content.book && (
+            <a className="nav__call nav__call--book" {...content.book} aria-label={t('nav.book')}>
               <Calendar />
             </a>
           )}
@@ -107,6 +139,18 @@ export function Nav() {
             {item.label}
           </a>
         ))}
+        {content.tel && (
+          <a className="sheet__social" href={content.tel} onClick={close}>
+            <Phone />
+            {content.phone}
+          </a>
+        )}
+        {content.mailto && (
+          <a className="sheet__social" href={content.mailto} onClick={close}>
+            <Envelope />
+            {content.email}
+          </a>
+        )}
         <a className="sheet__social" href={content.instagramUrl} target="_blank" rel="noreferrer noopener" onClick={close}>
           <Instagram />@{content.instagram}
         </a>
