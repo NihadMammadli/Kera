@@ -79,7 +79,7 @@ export const content = {
   currency: t('menu.currency'),
 
   phone,
-  /* "+32 470 15 51 08" → "tel:+32470155108" */
+  /* "+32 470 18 51 08" → "tel:+32470185108" */
   tel: phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : '',
   email,
   mailto: email ? `mailto:${email}` : '',

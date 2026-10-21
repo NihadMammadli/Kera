@@ -22,7 +22,7 @@ export const TEXT = [
   { path: 'address.country', label: 'Country' },
   { path: 'address.mapsUrl', label: 'Google Maps link', help: 'Open your restaurant in Google Maps, press Share, and paste the link here.' },
   { path: 'contact.instagram', label: 'Instagram username', help: 'Without the @. This is where every "follow" button on the site points.' },
-  { path: 'contact.phone', label: 'Phone number', required: false, help: 'Written the way guests should read it, e.g. +32 470 15 51 08. Shown at the top of the page, under Visit and in the footer, and tapping it calls you.' },
+  { path: 'contact.phone', label: 'Phone number', required: false, help: 'Written the way guests should read it, e.g. +32 470 18 51 08. Shown at the top of the page, under Visit and in the footer, and tapping it calls you.' },
   { path: 'contact.bookingUrl', label: 'Online booking link', required: false, help: 'The page where guests reserve a table. Every "Book a table" button opens it. Leave empty and the buttons call the phone number instead.' },
   { path: 'contact.email', label: 'Email address', required: false, help: 'Shown at the top of the page, under Visit and in the footer, and tapping it writes you an email. Leave empty to hide it; the site writes its own polite line instead.' },
   { path: 'contact.hours', label: 'Opening hours', required: false, multiline: true, help: 'One line per day or group of days — press Alt+Enter inside the cell for a new line. Keep the form "Monday–Friday: 12:00–15:00 and 18:00–00:00" and Google can read the hours too.' },
